@@ -3,14 +3,12 @@
 import type React from "react"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
+import { motion } from "motion/react"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Github, Linkedin, Mail, Twitter, Send, MapPin, Phone, Loader2 } from "lucide-react"
-import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
