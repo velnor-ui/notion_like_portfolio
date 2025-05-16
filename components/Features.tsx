@@ -3,6 +3,17 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Star, Rocket, Shield, Zap, Globe, Lock } from 'lucide-react';
 
+interface Feature {
+    icon: React.ComponentType<{ className?: string }>;
+    title: string;
+    description: string;
+    reviewer: string;
+    isHovering: boolean;
+    onHoverStart: () => void;
+    onHoverEnd: () => void;
+    isAlternate?: boolean;
+}
+
 const CardItem = ({ 
   icon: Icon, 
   title, 
@@ -12,7 +23,7 @@ const CardItem = ({
   onHoverStart, 
   onHoverEnd,
   isAlternate = false 
-}) => {
+}: Feature) => {
   return (
     <motion.div 
       onHoverStart={onHoverStart}
