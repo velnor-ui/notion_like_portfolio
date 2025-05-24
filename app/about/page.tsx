@@ -1,295 +1,461 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Briefcase, GraduationCap, Award, Heart, Download } from "lucide-react"
+import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useRef, useState } from "react";
+import {
+  certifications,
+  education,
+  experiences,
+  hobbies,
+} from "@/constants/about";
+import SectionCard from "@/components/section-card";
+import {
+  IconBriefcase,
+  IconCode,
+  IconCoffee,
+  IconDownload,
+  IconSparkles,
+  IconAward,
+  IconHeart,
+  IconBook2,
+} from "@tabler/icons-react";
+import ArrowButton from "@/components/ArrowButton";
 
-// Experience data
-const experiences = [
-  {
-    title: "Senior Frontend Developer",
-    company: "Tech Company",
-    period: "2021 - Present",
-    description:
-      "Led the development of the company's main product, improving performance by 40%. Mentored junior developers and implemented best practices.",
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
   },
-  {
-    title: "Frontend Developer",
-    company: "Digital Agency",
-    period: "2018 - 2021",
-    description:
-      "Developed responsive web applications for various clients. Worked with React, TypeScript, and various CSS frameworks.",
-  },
-  {
-    title: "Junior Developer",
-    company: "Startup Inc.",
-    period: "2016 - 2018",
-    description:
-      "Started my career building UI components and fixing bugs. Gained experience with JavaScript and modern frontend frameworks.",
-  },
-]
+};
 
-// Education data
-const education = [
-  {
-    degree: "Master's in Computer Science",
-    institution: "University Name",
-    period: "2014 - 2016",
-    description: "Specialized in web technologies and user interface design. Graduated with honors.",
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.46, 0.45, 0.94],
+    },
   },
-  {
-    degree: "Bachelor's in Computer Science",
-    institution: "University Name",
-    period: "2010 - 2014",
-    description: "Studied algorithms, data structures, and software engineering principles.",
-  },
-]
+};
 
-// Certifications data
-const certifications = [
-  {
-    name: "AWS Certified Developer",
-    issuer: "Amazon Web Services",
-    year: "2022",
+const cardHoverVariants = {
+  rest: { scale: 1, y: 0 },
+  hover: {
+    y: -4,
+    transition: {
+      duration: 0.3,
+      ease: "easeOut",
+    },
   },
-  {
-    name: "Professional Frontend Developer",
-    issuer: "Frontend Masters",
-    year: "2021",
-  },
-  {
-    name: "React Advanced Patterns",
-    issuer: "React Training",
-    year: "2020",
-  },
-]
-
-// Hobbies data
-const hobbies = [
-  {
-    name: "Photography",
-    description: "Capturing moments and exploring visual storytelling.",
-    image: "/placeholder.svg?height=200&width=200",
-  },
-  {
-    name: "Hiking",
-    description: "Exploring nature and challenging myself physically.",
-    image: "/placeholder.svg?height=200&width=200",
-  },
-  {
-    name: "Reading",
-    description: "Expanding knowledge through books and articles.",
-    image: "/placeholder.svg?height=200&width=200",
-  },
-]
+};
 
 export default function AboutPage() {
+  const [activeTab, setActiveTab] = useState("experience");
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start end", "end start"],
+  });
+
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+
   return (
-    <div className="container py-10 space-y-16">
-      {/* Hero Section */}
-      <section>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-6"
+    <div className="relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute -right-1/4 top-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-neutral-100/40 to-transparent blur-3xl dark:from-neutral-800/20" />
+        <div className="absolute -left-1/4 bottom-1/4 h-96 w-96 rounded-full bg-gradient-to-tr from-neutral-100/30 to-transparent blur-3xl dark:from-neutral-800/10" />
+      </div>
+
+      <motion.div
+        className="container space-y-20 py-12"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        {/* Hero Section */}
+        <motion.section
+          ref={heroRef}
+          variants={itemVariants}
+          style={{ y: heroY, opacity: heroOpacity }}
+        >
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            {/* Text Content */}
+            <motion.div className="space-y-8" variants={containerVariants}>
+              <motion.div variants={itemVariants} className="space-y-4">
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                  <motion.span
+                    className="inline-flex items-center gap-2 rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <IconSparkles className="h-4 w-4" />
+                    Available for new opportunities
+                  </motion.span>
+                </motion.div>
+
+                <motion.h1
+                  className="text-5xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 lg:text-6xl"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                >
+                  About Me
+                </motion.h1>
+
+                <motion.p
+                  className="text-xl leading-relaxed text-neutral-600 dark:text-neutral-400"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                >
+                  I'm a passionate developer with over 6 years of experience
+                  crafting digital experiences that matter.
+                </motion.p>
+              </motion.div>
+
+              <motion.div variants={itemVariants} className="space-y-6">
+                <motion.p
+                  className="leading-relaxed text-neutral-600 dark:text-neutral-400"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                >
+                  I specialize in creating responsive, accessible, and
+                  performance-optimized web applications using modern
+                  technologies. My approach combines technical expertise with a
+                  keen eye for design and user experience, ensuring every
+                  project delivers both functionality and delight.
+                </motion.p>
+
+                <motion.p
+                  className="leading-relaxed text-neutral-600 dark:text-neutral-400"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                >
+                  When I'm not coding, you can find me hiking mountain trails,
+                  capturing moments through photography, or diving deep into the
+                  latest tech books. I believe in continuous learning and
+                  staying curious about emerging technologies and design trends.
+                </motion.p>
+              </motion.div>
+
+              {/* Stats */}
+              <motion.div
+                variants={itemVariants}
+                className="grid grid-cols-3 gap-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
+              >
+                {[
+                  { number: "6+", label: "Years Experience" },
+                  { number: "50+", label: "Projects Completed" },
+                  { number: "3", label: "Certifications" },
+                ].map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    className="text-center"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">
+                      {stat.number}
+                    </div>
+                    <div className="text-sm text-neutral-600 dark:text-neutral-400">
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              {/* CTA Button */}
+              <motion.div
+                variants={itemVariants}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+              >
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <ArrowButton link="">
+                    <IconDownload className="mr-2 h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
+                    Download Resume
+                  </ArrowButton>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+
+            {/* Profile Image */}
+            <motion.div variants={itemVariants} className="relative">
+              <motion.div
+                className="group relative mx-auto h-[500px] w-[400px] rounded-3xl"
+                initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                whileHover={{ scale: 1.02, rotate: 1 }}
+              >
+                {/* Decorative border */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-neutral-200 via-transparent to-neutral-300 p-1 dark:from-neutral-700 dark:to-neutral-800">
+                  <div className="relative h-full w-full overflow-hidden rounded-3xl bg-white dark:bg-neutral-900">
+                    <Image
+                      src="/hero.jpeg"
+                      alt="Profile"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  </div>
+                </div>
+
+                {/* Floating elements */}
+                <motion.div
+                  className="absolute -right-4 -top-4 rounded-full bg-white p-3 shadow-xl dark:bg-neutral-800"
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <IconCode className="h-6 w-6 text-neutral-700 dark:text-neutral-300" />
+                </motion.div>
+
+                <motion.div
+                  className="absolute -bottom-4 -left-4 rounded-full bg-white p-3 shadow-xl dark:bg-neutral-800"
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1.5,
+                  }}
+                >
+                  <IconCoffee className="h-6 w-6 text-neutral-700 dark:text-neutral-300" />
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        {/* Tabs Section */}
+        <motion.section variants={itemVariants}>
+          <Tabs
+            value={activeTab}
+            onValueChange={setActiveTab}
+            className="w-full"
           >
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <h1 className="text-4xl font-bold">About Me</h1>
-              <p className="text-xl text-muted-foreground mt-4">
-                I'm a passionate developer with over 6 years of experience building web applications.
-              </p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="space-y-4"
-            >
-              <p className="text-muted-foreground">
-                I specialize in creating responsive, accessible, and performance-optimized web applications using modern
-                technologies. My approach combines technical expertise with a keen eye for design and user experience.
-              </p>
-              <p className="text-muted-foreground">
-                When I'm not coding, you can find me hiking, reading, or experimenting with photography. I believe in
-                continuous learning and staying updated with the latest industry trends.
-              </p>
-            </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
             >
-              <Button className="group">
-                <Download className="mr-2 h-4 w-4 group-hover:translate-y-[-2px] transition-transform" /> 
-                Download Resume
-              </Button>
+              <TabsList className="grid w-full grid-cols-4 bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-800/50">
+                {[
+                  {
+                    value: "experience",
+                    icon: IconBriefcase,
+                    label: "Experience",
+                  },
+                  {
+                    value: "education",
+                    icon: IconBook2,
+                    label: "Education",
+                  },
+                  {
+                    value: "certifications",
+                    icon: IconAward,
+                    label: "Certifications",
+                  },
+                  { value: "hobbies", icon: IconHeart, label: "Hobbies" },
+                ].map((tab) => (
+                  <motion.div
+                    key={tab.value}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <TabsTrigger
+                      value={tab.value}
+                      className="group flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:shadow-sm dark:data-[state=active]:bg-neutral-700"
+                    >
+                      <tab.icon className="h-4 w-4 transition-transform group-hover:scale-110" />
+                      <span className="hidden sm:inline">{tab.label}</span>
+                    </TabsTrigger>
+                  </motion.div>
+                ))}
+              </TabsList>
             </motion.div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative h-[400px] rounded-xl overflow-hidden border-8 border-muted group"
-          >
-            <Image 
-              src="/placeholder.svg?height=600&width=400" 
-              alt="Your Name" 
-              fill 
-              className="object-cover group-hover:scale-105 transition-transform duration-500" 
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </motion.div>
-        </div>
-      </section>
 
-      {/* Tabs Section */}
-      <section>
-        <Tabs defaultValue="experience" className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
-            {[
-              { value: "experience", icon: Briefcase, label: "Experience" },
-              { value: "education", icon: GraduationCap, label: "Education" },
-              { value: "certifications", icon: Award, label: "Certifications" },
-              { value: "hobbies", icon: Heart, label: "Hobbies" },
-            ].map((tab) => (
-              <TabsTrigger 
-                key={tab.value} 
-                value={tab.value} 
-                className="flex items-center group"
-              >
-                <tab.icon className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" /> 
-                {tab.label}
-              </TabsTrigger>
-            ))}
-          </TabsList>
+            {/* Experience Tab */}
+            <TabsContent value="experience" className="mt-8">
+              <div className="space-y-6">
+                {experiences.map((exp, index) => (
+                  <motion.div
+                    key={index}
+                    variants={cardHoverVariants}
+                    initial="rest"
+                    whileHover="hover"
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <SectionCard
+                      title={exp.title}
+                      subtitle={exp.company}
+                      location={exp.location}
+                      description={exp.description}
+                      achievements={exp.achievements}
+                      period={exp.period}
+                      isExperience
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            </TabsContent>
 
-          {/* Experience Tab */}
-          <TabsContent value="experience" className="mt-6">
-            <div className="space-y-6">
-              {experiences.map((exp, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <Card className="group hover:border-primary/50 transition-colors">
-                    <CardContent className="p-6">
-                      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
-                        <div className="space-y-2">
-                          <h3 className="text-xl font-bold group-hover:text-primary transition-colors">{exp.title}</h3>
-                          <p className="text-primary">{exp.company}</p>
-                          <p className="text-muted-foreground mt-4">{exp.description}</p>
-                        </div>
-                        <div className="text-muted-foreground shrink-0">{exp.period}</div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </TabsContent>
+            {/* Education Tab */}
+            <TabsContent value="education" className="mt-8">
+              <div className="space-y-6">
+                {education.map((edu, index) => (
+                  <motion.div
+                    key={index}
+                    variants={cardHoverVariants}
+                    initial="rest"
+                    whileHover="hover"
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <SectionCard
+                      title={edu.degree}
+                      subtitle={edu.institution}
+                      location={edu.gpa}
+                      description={edu.description}
+                      achievements={edu.highlights}
+                      period={edu.period}
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            </TabsContent>
 
-          {/* Education Tab */}
-          <TabsContent value="education" className="mt-6">
-            <div className="space-y-6">
-              {education.map((edu, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <Card className="group hover:border-primary/50 transition-colors">
-                    <CardContent className="p-6">
-                      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
-                        <div className="space-y-2">
-                          <h3 className="text-xl font-bold group-hover:text-primary transition-colors">{edu.degree}</h3>
-                          <p className="text-primary">{edu.institution}</p>
-                          <p className="text-muted-foreground mt-4">{edu.description}</p>
-                        </div>
-                        <div className="text-muted-foreground shrink-0">{edu.period}</div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </TabsContent>
-
-          {/* Certifications Tab */}
-          <TabsContent value="certifications" className="mt-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {certifications.map((cert, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <Card className="group hover:border-primary/50 transition-colors">
-                    <CardContent className="p-6 flex flex-col items-center text-center">
-                      <motion.div
-                        whileHover={{ rotate: 10 }}
-                        className="mb-4"
-                      >
-                        <Award className="h-12 w-12 text-primary" />
-                      </motion.div>
-                      <h3 className="text-xl font-bold group-hover:text-primary transition-colors">{cert.name}</h3>
-                      <p className="text-muted-foreground">{cert.issuer}</p>
-                      <p className="text-sm text-muted-foreground mt-2">{cert.year}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </TabsContent>
-
-          {/* Hobbies Tab */}
-          <TabsContent value="hobbies" className="mt-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {hobbies.map((hobby, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <Card className="overflow-hidden group hover:border-primary/50 transition-colors">
-                    <div className="relative h-48 w-full overflow-hidden">
-                      <Image 
-                        src={hobby.image || "/placeholder.svg"} 
-                        alt={hobby.name} 
-                        fill 
-                        className="object-cover group-hover:scale-110 transition-transform duration-500" 
+            {/* Certifications Tab */}
+            <TabsContent value="certifications" className="mt-8">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {certifications.map((cert, index) => (
+                  <motion.div
+                    key={index}
+                    variants={cardHoverVariants}
+                    initial="rest"
+                    whileHover="hover"
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <Card className="group relative overflow-hidden border-neutral-200 bg-white/80 backdrop-blur-sm hover:border-neutral-300 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900/80 dark:hover:border-neutral-700">
+                      {/* Gradient background */}
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${cert.color} opacity-5 transition-opacity group-hover:opacity-10`}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </div>
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-bold group-hover:text-primary transition-colors">{hobby.name}</h3>
-                      <p className="text-muted-foreground mt-2">{hobby.description}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
-      </section>
-    </div>
-  )
-}
 
+                      <CardContent className="relative flex flex-col items-center p-8 text-center">
+                        <motion.div
+                          className="mb-6 rounded-full bg-gradient-to-br from-neutral-100 to-neutral-200 p-4 dark:from-neutral-700 dark:to-neutral-800"
+                          whileHover={{ rotate: 10, scale: 1.1 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <IconAward className="h-8 w-8 text-neutral-700 dark:text-neutral-300" />
+                        </motion.div>
+
+                        <h3 className="mb-2 text-xl font-bold text-neutral-900 transition-colors group-hover:text-neutral-700 dark:text-neutral-100 dark:group-hover:text-neutral-300">
+                          {cert.name}
+                        </h3>
+
+                        <p className="mb-1 text-neutral-600 dark:text-neutral-400">
+                          {cert.issuer}
+                        </p>
+
+                        <p className="mb-3 text-sm text-neutral-500 dark:text-neutral-500">
+                          {cert.year}
+                        </p>
+
+                        <p className="font-mono text-xs text-neutral-400 dark:text-neutral-600">
+                          ID: {cert.credentialId}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            </TabsContent>
+
+            {/* Hobbies Tab */}
+            <TabsContent value="hobbies" className="mt-8">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+                {hobbies.map((hobby, index) => (
+                  <motion.div
+                    key={index}
+                    variants={cardHoverVariants}
+                    initial="rest"
+                    whileHover="hover"
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <Card className="group overflow-hidden border-neutral-200 bg-white/80 backdrop-blur-sm hover:border-neutral-300 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900/80 dark:hover:border-neutral-700">
+                      <div className="relative h-48 w-full overflow-hidden">
+                        <Image
+                          src={hobby.image || "/placeholder.svg"}
+                          alt={hobby.name}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+                        {/* Floating emoji */}
+                        <div className="absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-2xl backdrop-blur-sm dark:bg-neutral-900/90">
+                          {hobby.icon}
+                        </div>
+
+                        {/* Stats badge */}
+                        <div className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-medium backdrop-blur-sm dark:bg-neutral-900/90">
+                          {hobby.stats}
+                        </div>
+                      </div>
+
+                      <CardContent className="p-6">
+                        <h3 className="mb-2 text-xl font-bold text-neutral-900 transition-colors group-hover:text-neutral-700 dark:text-neutral-100 dark:group-hover:text-neutral-300">
+                          {hobby.name}
+                        </h3>
+                        <p className="leading-relaxed text-neutral-600 dark:text-neutral-400">
+                          {hobby.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            </TabsContent>
+          </Tabs>
+        </motion.section>
+      </motion.div>
+    </div>
+  );
+}
