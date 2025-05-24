@@ -1,159 +1,265 @@
 "use client";
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
 
-const TESTIMONIALS = [
-  {
-    name: "John Doe",
-    position: "CEO, Company",
-    testimonial: "I was skeptical at first, but after using this tool, I've seen a 20% increase in engagement. Highly recommend!"
-  },
-  {
-    name: "Jane Smith",
-    position: "CTO, Startup",
-    testimonial: "This platform transformed our workflow. It's intuitive and highly effective!"
-  },
-  {
-    name: "Mike Johnson",
-    position: "Founder, Tech Company",
-    testimonial: "Exceptional support and fantastic results. Wouldn't hesitate to recommend."
-  },
-];
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { TESTIMONIALS } from "../constants/testimonials";
 
-const Testimonials = () => {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+const TestimonialCard = ({
+  testimonial,
+  direction,
+}: {
+  testimonial: any;
+  direction: number;
+}) => {
+  const [isHovered, setIsHovered] = useState(false);
 
-  const getRandomEnterVariant = () => {
-    const sides = [
-      { x: '-100%', y: '0' },
-      { x: '100%', y: '0' },
-      { x: '0', y: '-100%' },
-      { x: '0', y: '100%' }
-    ];
-    return sides[Math.floor(Math.random() * sides.length)];
+  const variants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 300 : -300,
+      opacity: 0,
+      scale: 0.95,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        x: { type: "spring", stiffness: 300, damping: 30 },
+        opacity: { duration: 0.3 },
+        scale: { duration: 0.3 },
+      },
+    },
+    exit: (direction: number) => ({
+      x: direction < 0 ? 300 : -300,
+      opacity: 0,
+      scale: 0.95,
+      transition: {
+        x: { type: "spring", stiffness: 300, damping: 30 },
+        opacity: { duration: 0.3 },
+        scale: { duration: 0.3 },
+      },
+    }),
   };
 
   return (
-    <div 
-      ref={containerRef} 
-      className="w-full min-h-[300vh] relative"
+    <motion.div
+      key={testimonial.name}
+      custom={direction}
+      variants={variants}
+      initial="enter"
+      animate="center"
+      exit="exit"
+      className="mx-auto w-full max-w-2xl"
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
     >
-      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
-        {TESTIMONIALS.map((testimonial, index) => {
-          // Create stacking and scaling effect
-          const scale = useTransform(
-            scrollYProgress,
-            [
-              index / TESTIMONIALS.length, 
-              (index + 0.5) / TESTIMONIALS.length, 
-              (index + 1) / TESTIMONIALS.length
-            ],
-            [1, 0.9, 0.8]
-          );
+      <motion.div
+        className="relative rounded-lg border p-8 shadow-sm transition-all duration-300 hover:shadow-md"
+        animate={{
+          y: isHovered ? -2 : 0,
+          boxShadow: isHovered
+            ? "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+            : "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+        }}
+        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+      >
+        {/* Quote */}
+        <motion.p
+          className="mb-8 text-lg font-normal leading-relaxed text-neutral-700 dark:text-neutral-400"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.3 }}
+        >
+          "{testimonial.testimonial}"
+        </motion.p>
 
-          const translateY = useTransform(
-            scrollYProgress,
-            [
-              index / TESTIMONIALS.length, 
-              (index + 0.5) / TESTIMONIALS.length, 
-              (index + 1) / TESTIMONIALS.length
-            ],
-            [0, 50, 100]
-          );
-
-          const opacity = useTransform(
-            scrollYProgress,
-            [
-              index / TESTIMONIALS.length, 
-              (index + 0.5) / TESTIMONIALS.length, 
-              (index + 1) / TESTIMONIALS.length
-            ],
-            [1, 0.7, 0.5]
-          );
-
-          const initialVariant = getRandomEnterVariant();
-
-          return (
+        {/* Profile section */}
+        <motion.div
+          className="flex items-center gap-4"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.3 }}
+        >
+          <motion.div
+            className="relative"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 400, damping: 30 }}
+          >
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800">
+              <span className="text-sm font-medium text-neutral-600 dark:text-neutral-200">
+                {testimonial.avatar}
+              </span>
+            </div>
             <motion.div
-              initial={{ 
-                opacity: 0,
-                x: initialVariant.x,
-                y: initialVariant.y,
-                scale: 0.8
+              className="absolute -bottom-0.5 -right-0.5 h-4 w-4 rounded-full border-2 border-white bg-green-500"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{
+                delay: 0.6,
+                type: "spring",
+                stiffness: 500,
+                damping: 30,
               }}
-              animate={{
-                opacity: 1,
-                x: 0,
-                y: 0,
-                scale: 1,
-                transition: {
-                  duration: 1.2,
-                  type: "spring",
-                  stiffness: 80,
-                  damping: 15
-                }
-              }}
-              style={{
-                scale,
-                translateY,
-                opacity,
-                zIndex: TESTIMONIALS.length - index,
-                position: 'absolute',
-                top: '20%   ',
-                left: '0',
-                transform: 'translate(-50%, -50%)',
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                paddingInline: '1rem'
-              }}
-              className="will-change-transform"
-            >
-              <div className="w-full max-w-md bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl p-8 border border-neutral-100 dark:border-neutral-800">
-                <p className="text-lg text-neutral-800 dark:text-neutral-200 mb-6 font-medium">
-                  "{testimonial.testimonial}"
-                </p>
-                <div className="flex items-center mt-6">
-                  <div className="w-12 h-12 rounded-full bg-neutral-200 dark:bg-neutral-700 overflow-hidden">
-                    <img
-                      src={`/api/placeholder/100/100?text=${testimonial.name.split(' ')[0]}`}
-                      alt={testimonial.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="ml-4">
-                    <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
-                      {testimonial.name}
-                    </p>
-                    <p className="text-xs text-neutral-600 dark:text-neutral-400">
-                      {testimonial.position}
-                    </p>
-                  </div>
-                </div>
+            />
+          </motion.div>
 
-                {/* Progress Indicator */}
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                  {TESTIMONIALS.map((_, dotIndex) => (
-                    <div
-                      key={dotIndex}
-                      className={`
-                        w-2 h-2 rounded-full 
-                        ${index === dotIndex 
-                          ? 'bg-neutral-800 dark:bg-neutral-200' 
-                          : 'bg-neutral-300 dark:bg-neutral-600'}
-                      `}
-                    />
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          );
-        })}
+          <div className="flex-1">
+            <motion.h4
+              className="text-base font-medium"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5, duration: 0.3 }}
+            >
+              {testimonial.name}
+            </motion.h4>
+            <motion.p
+              className="text-sm text-neutral-500"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6, duration: 0.3 }}
+            >
+              {testimonial.position}
+            </motion.p>
+            <motion.p
+              className="mt-0.5 text-xs font-medium text-neutral-400"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.7, duration: 0.3 }}
+            >
+              {testimonial.company}
+            </motion.p>
+          </div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const Testimonials = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+
+  const paginate = (newDirection: number) => {
+    setDirection(newDirection);
+    setCurrentIndex((prev) => {
+      if (newDirection === 1) {
+        return (prev + 1) % TESTIMONIALS.length;
+      } else {
+        return prev === 0 ? TESTIMONIALS.length - 1 : prev - 1;
+      }
+    });
+  };
+
+  const goToSlide = (index: number) => {
+    setDirection(index > currentIndex ? 1 : -1);
+    setCurrentIndex(index);
+  };
+
+  return (
+    <div className="bg-neutral-50 px-4 py-16 dark:bg-black">
+      <div className="mx-auto max-w-4xl">
+        {/* Header */}
+        <motion.div
+          className="mb-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <motion.h2
+            className="mb-3 text-3xl font-semibold"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.3 }}
+          >
+            Loved by teams everywhere
+          </motion.h2>
+          <motion.p
+            className="mx-auto max-w-xl text-base text-neutral-600"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.3 }}
+          >
+            See what people are saying about their experience
+          </motion.p>
+        </motion.div>
+
+        {/* Testimonial Cards */}
+        <div className="relative mb-12 h-80 overflow-hidden">
+          <AnimatePresence mode="wait" custom={direction}>
+            <TestimonialCard
+              key={currentIndex}
+              testimonial={TESTIMONIALS[currentIndex]}
+              direction={direction}
+            />
+          </AnimatePresence>
+        </div>
+
+        {/* Navigation */}
+        <div className="flex items-center justify-center gap-8">
+          {/* Previous button */}
+          <motion.button
+            onClick={() => paginate(-1)}
+            className="rounded-md border p-2 text-neutral-400 transition-all duration-200 hover:border-neutral-300 hover:text-neutral-600"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </motion.button>
+
+          {/* Dots */}
+          <div className="flex gap-2">
+            {TESTIMONIALS.map((_, index) => (
+              <motion.button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`h-2 w-2 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? "w-6 bg-neutral-800"
+                    : "bg-neutral-300 hover:bg-neutral-400"
+                }`}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1 + 0.5 }}
+              />
+            ))}
+          </div>
+
+          {/* Next button */}
+          <motion.button
+            onClick={() => paginate(1)}
+            className="rounded-md border p-2 text-neutral-400 transition-all duration-200 hover:border-neutral-300 hover:text-neutral-600"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </motion.button>
+        </div>
       </div>
     </div>
   );
