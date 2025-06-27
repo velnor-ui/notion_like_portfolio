@@ -89,15 +89,13 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="lg:col-span-2">
-      <div className="rounded-lg border border-neutral-200 dark:border-neutral-700 p-8 shadow-sm">
+    <div className="text-xs sm:text-sm md:text-base lg:col-span-2">
+      <div className="rounded-lg border border-neutral-200 p-8 shadow-sm dark:border-neutral-700">
         <div className="space-y-6">
           {/* Name and Email Row */}
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div>
-              <label className="mb-2 block text-sm font-medium">
-                Name
-              </label>
+              <label className="mb-2 block font-medium">Name</label>
               <div className="relative">
                 <IconUser
                   className={`absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform transition-colors duration-200 ${
@@ -117,12 +115,12 @@ const ContactForm = () => {
                   className={`w-full rounded-lg border py-3 pl-10 pr-4 transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary ${
                     errors.name
                       ? "border-red-300 bg-red-50"
-                      : "border-neutral-300 dark:border-neutral-700 hover:border-neutral-400"
+                      : "border-neutral-300 hover:border-neutral-400 dark:border-neutral-700"
                   }`}
                 />
               </div>
               {errors.name && (
-                <p className="mt-1 flex items-center text-sm text-red-600">
+                <p className="mt-1 flex items-center text-red-600">
                   <IconX className="mr-1 h-4 w-4" />
                   {errors.name}
                 </p>
@@ -130,9 +128,7 @@ const ContactForm = () => {
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-medium">
-                Email
-              </label>
+              <label className="mb-2 block font-medium">Email</label>
               <div className="relative">
                 <IconBrandGmail
                   className={`absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform transition-colors duration-200 ${
@@ -152,12 +148,12 @@ const ContactForm = () => {
                   className={`w-full rounded-lg border py-3 pl-10 pr-4 transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary ${
                     errors.email
                       ? "border-red-300 bg-red-50"
-                      : "border-neutral-300 dark:border-neutral-700 hover:border-neutral-400"
+                      : "border-neutral-300 hover:border-neutral-400 dark:border-neutral-700"
                   }`}
                 />
               </div>
               {errors.email && (
-                <p className="mt-1 flex items-center text-sm text-red-600">
+                <p className="mt-1 flex items-center text-red-600">
                   <IconX className="mr-1 h-4 w-4" />
                   {errors.email}
                 </p>
@@ -167,9 +163,7 @@ const ContactForm = () => {
 
           {/* Subject */}
           <div>
-            <label className="mb-2 block text-sm font-medium">
-              Subject
-            </label>
+            <label className="mb-2 block font-medium">Subject</label>
             <div className="relative">
               <IconMessage
                 className={`absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform transition-colors duration-200 ${
@@ -189,12 +183,12 @@ const ContactForm = () => {
                 className={`w-full rounded-lg border py-3 pl-10 pr-4 transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary ${
                   errors.subject
                     ? "border-red-300 bg-red-50"
-                    : "border-neutral-300 dark:border-neutral-700 hover:border-neutral-400"
+                    : "border-neutral-300 hover:border-neutral-400 dark:border-neutral-700"
                 }`}
               />
             </div>
             {errors.subject && (
-              <p className="mt-1 flex items-center text-sm text-red-600">
+              <p className="mt-1 flex items-center text-red-600">
                 <IconX className="mr-1 h-4 w-4" />
                 {errors.subject}
               </p>
@@ -203,9 +197,7 @@ const ContactForm = () => {
 
           {/* Message */}
           <div>
-            <label className="mb-2 block text-sm font-medium">
-              Message
-            </label>
+            <label className="mb-2 block font-medium">Message</label>
             <textarea
               name="message"
               value={formData.message}
@@ -217,18 +209,18 @@ const ContactForm = () => {
               className={`w-full resize-none rounded-lg border px-4 py-3 transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary ${
                 errors.message
                   ? "border-red-300 bg-red-50"
-                  : "border-neutral-300 dark:border-neutral-700 hover:border-neutral-400"
+                  : "border-neutral-300 hover:border-neutral-400 dark:border-neutral-700"
               }`}
             />
             {errors.message && (
-              <p className="mt-1 flex items-center text-sm text-red-600">
+              <p className="mt-1 flex items-center text-red-600">
                 <IconX className="mr-1 h-4 w-4" />
                 {errors.message}
               </p>
             )}
             <div className="mt-2 text-right">
               <span
-                className={`text-sm ${formData.message.length > 10 ? "text-neutral-600" : "text-neutral-400"}`}
+                className={` ${formData.message.length > 10 ? "text-neutral-600" : "text-neutral-400"}`}
               >
                 {formData.message.length} characters
               </span>
