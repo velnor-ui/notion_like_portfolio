@@ -1,9 +1,9 @@
-import { LucideIcon } from "lucide-react"
-import { 
-  Code, 
-  Server, 
-  Palette, 
-  Cloud, 
+import { LucideIcon } from "lucide-react";
+import {
+  Code,
+  Server,
+  Palette,
+  Cloud,
   Smartphone,
   Box,
   Database,
@@ -11,10 +11,9 @@ import {
   Cpu,
   Terminal,
   FileCode,
-  Network,
   HardDrive,
   Workflow,
-} from "lucide-react"
+} from "lucide-react";
 
 const iconMap: Record<string, LucideIcon> = {
   Code,
@@ -31,17 +30,17 @@ const iconMap: Record<string, LucideIcon> = {
   PostgreSQL: Database,
   GraphQL: Workflow,
   Docker: HardDrive,
-}
+};
 
 interface IconProps {
-  name: string
-  className?: string
+  name: string;
+  className?: string;
 }
 
 export function Icon({ name, className }: IconProps) {
-  const IconComponent = iconMap[name]
+  const IconComponent = iconMap[name];
   if (IconComponent) {
-    return <IconComponent className={className} />
+    return <IconComponent className={className} />;
   }
-  return null
-} 
+  return null;
+}

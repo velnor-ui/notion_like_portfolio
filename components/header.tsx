@@ -38,7 +38,7 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "sticky z-50 mx-auto w-full transition-all duration-300 ease-in-out",
+        "fixed z-50 mx-auto w-full transition-all duration-300 ease-in-out",
         scrolled
           ? "top-2 max-w-4xl rounded-2xl border bg-background/60 backdrop-blur-md"
           : "top-0 max-w-6xl bg-background",

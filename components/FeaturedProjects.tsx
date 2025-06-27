@@ -7,10 +7,11 @@ import { useState } from "react";
 import ArrowButton from "./ArrowButton";
 import { featuredProjects } from "@/constants/projects";
 import { IconBrandGithub } from "@tabler/icons-react";
+import Image from "next/image";
+import SectionHeader from "./SectionHeader";
 
 const FeaturedProjects = () => {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
-  const [hoveredTag, setHoveredTag] = useState<string | null>(null);
   const [imageLoaded, setImageLoaded] = useState<{ [key: string]: boolean }>(
     {},
   );
@@ -33,22 +34,12 @@ const FeaturedProjects = () => {
     <div className="py-20">
       <div className="mx-auto max-w-6xl px-6">
         {/* Header Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="mb-16 text-center"
-        >
-          <div className="mb-6 inline-flex items-center justify-center rounded-full border border-neutral-200 p-3 dark:border-neutral-800">
-            <Zap className="mr-2 h-5 w-5" />
-            <span className="text-sm font-medium">Featured Work</span>
-          </div>
-          <h2 className="mb-4 text-4xl font-bold">Selected Projects</h2>
-          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
-            A curated collection of my recent work, showcasing innovative
-            solutions and technical expertise
-          </p>
-        </motion.div>
+        <SectionHeader
+          badge={<Zap className="mr-2 h-5 w-5" />}
+          badgeText="Featured Work"
+          title="Selected Projects"
+          description="A curated collection of my recent work, showcasing innovative solutions and technical expertise"
+        />
 
         {/* Projects Grid */}
         <div className="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-2">
@@ -89,15 +80,17 @@ const FeaturedProjects = () => {
                     </div>
                   </div>
 
-                  <img
+                  <Image
                     src={project.image}
-                    alt={project.title}
+                    alt={`Screenshot of ${project.title}`}
+                    fill
                     className={`h-full w-full object-cover transition-all duration-700 ${
                       imageLoaded[project.id]
                         ? "scale-100 opacity-100"
                         : "scale-105 opacity-0"
                     } ${hoveredProject === project.id ? "scale-110" : ""}`}
-                    onLoad={() => handleImageLoad(project.id)}
+                    onLoadingComplete={() => handleImageLoad(project.id)}
+                    loading="lazy"
                   />
 
                   {/* Status & Featured Indicators */}

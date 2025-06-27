@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "motion/react";
 import { TESTIMONIALS } from "../constants/testimonials";
 
 const TestimonialCard = ({
@@ -13,7 +13,7 @@ const TestimonialCard = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  const variants = {
+  const variants: Variants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 300 : -300,
       opacity: 0,
@@ -64,22 +64,12 @@ const TestimonialCard = ({
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
       >
         {/* Quote */}
-        <motion.p
-          className="mb-8 text-lg font-normal leading-relaxed text-neutral-700 dark:text-neutral-400"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.3 }}
-        >
+        <motion.p className="mb-8 text-lg font-normal leading-relaxed text-neutral-700 dark:text-neutral-400">
           "{testimonial.testimonial}"
         </motion.p>
 
         {/* Profile section */}
-        <motion.div
-          className="flex items-center gap-4"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.3 }}
-        >
+        <motion.div className="flex items-center gap-4">
           <motion.div
             className="relative"
             whileHover={{ scale: 1.05 }}
@@ -90,42 +80,17 @@ const TestimonialCard = ({
                 {testimonial.avatar}
               </span>
             </div>
-            <motion.div
-              className="absolute -bottom-0.5 -right-0.5 h-4 w-4 rounded-full border-2 border-white bg-green-500"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{
-                delay: 0.6,
-                type: "spring",
-                stiffness: 500,
-                damping: 30,
-              }}
-            />
+            <motion.div className="absolute -bottom-0.5 -right-0.5 h-4 w-4 rounded-full border-2 border-white bg-green-500" />
           </motion.div>
 
           <div className="flex-1">
-            <motion.h4
-              className="text-base font-medium"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5, duration: 0.3 }}
-            >
+            <motion.h4 className="text-base font-medium">
               {testimonial.name}
             </motion.h4>
-            <motion.p
-              className="text-sm text-neutral-500"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6, duration: 0.3 }}
-            >
+            <motion.p className="text-sm text-neutral-500">
               {testimonial.position}
             </motion.p>
-            <motion.p
-              className="mt-0.5 text-xs font-medium text-neutral-400"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.7, duration: 0.3 }}
-            >
+            <motion.p className="mt-0.5 text-xs font-medium text-neutral-400">
               {testimonial.company}
             </motion.p>
           </div>

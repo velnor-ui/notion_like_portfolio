@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useTheme } from "next-themes";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { IconMoon, IconSun } from "@tabler/icons-react";
 
 const ThemeToggle = ({ mounted }: { mounted: boolean }) => {
