@@ -136,7 +136,7 @@ export default function AboutPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.6 }}
                   >
-                    When I'm not coding, you can find me hiking mountain trails,
+                    When I&apos;m not coding, you can find me hiking mountain trails,
                     capturing moments through photography, or diving deep into
                     the latest tech books. I believe in continuous learning and
                     staying curious about emerging technologies and design

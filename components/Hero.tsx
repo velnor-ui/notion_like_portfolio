@@ -27,7 +27,7 @@ const Hero = () => {
           </div>
           {/* Change it to your name */}
           <h1 className="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-            Hi, I'm{" "}
+            Hi, I&apos;m{" "}
             <span className="inline-block text-primary">Tony Stark</span>
           </h1>
           {/* Change it to your bio / one-liner */}

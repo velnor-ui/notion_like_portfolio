@@ -220,8 +220,8 @@ const FeaturedProjects = () => {
             Ready to start your project?
           </h3>
           <p className="mb-8 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400 md:text-base">
-            I'm always excited to collaborate on innovative projects and bring
-            creative ideas to life. Let's discuss how we can work together to
+            I&apos;m always excited to collaborate on innovative projects and bring
+            creative ideas to life. Let&apos;s discuss how we can work together to
             create something exceptional.
           </p>
           <div className="flex w-full flex-col justify-center gap-4 sm:flex-row">

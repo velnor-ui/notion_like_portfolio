@@ -107,7 +107,7 @@ export default function ProjectDetailPage() {
               Project Not Found
             </h1>
             <p className="max-w-md text-neutral-600 dark:text-neutral-400">
-              The project you're looking for doesn't exist or has been moved to
+              The project you&apos;re looking for doesn&apos;t exist or has been moved to
               a different location.
             </p>
           </div>
@@ -133,12 +133,12 @@ export default function ProjectDetailPage() {
       <PageSEO
         title={project.title}
         description={project.description}
-        ogImage={project.images[0]}
+        ogImage={project.images?.[0]}
         canonical={`https://yourdomain.com/projects/${slug}`}
         twitterCard="summary_large_image"
         twitterTitle={project.title}
         twitterDescription={project.description}
-        twitterImage={project.images[0]}
+        twitterImage={project.images?.[0]}
       />
       <main ref={containerRef} className="relative">
         <motion.div
@@ -180,7 +180,7 @@ export default function ProjectDetailPage() {
               />
 
               {/* Tags */}
-              <Tags tags={project.tags} />
+              {project.tags && <Tags tags={project.tags} />}
 
               {/* Meta Information */}
               <motion.div
@@ -216,7 +216,7 @@ export default function ProjectDetailPage() {
             >
               <Carousel className="w-full">
                 <CarouselContent>
-                  {project.images.map((image, index) => (
+                  {project.images?.map((image, index) => (
                     <CarouselItem key={index}>
                       <motion.div
                         className="relative aspect-video overflow-hidden rounded-2xl border border-neutral-200 shadow-2xl dark:border-neutral-800"
@@ -277,6 +277,7 @@ export default function ProjectDetailPage() {
                   </h2>
                   <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                     {/* Challenges */}
+                    {project.challenges && (
                     <motion.div
                       className="space-y-4"
                       whileHover={{ scale: 1.02 }}
@@ -306,8 +307,10 @@ export default function ProjectDetailPage() {
                         </ul>
                       </div>
                     </motion.div>
+                    )}
 
                     {/* Solutions */}
+                    {project.solutions && (
                     <motion.div
                       className="space-y-4"
                       whileHover={{ scale: 1.02 }}
@@ -337,6 +340,7 @@ export default function ProjectDetailPage() {
                         </ul>
                       </div>
                     </motion.div>
+                    )}
                   </div>
                 </motion.div>
 
@@ -428,6 +432,7 @@ export default function ProjectDetailPage() {
 
                       {/* Action Buttons */}
                       <div className="grid grid-cols-1 gap-2 md:gap-2 lg:gap-3">
+                        {project.liveUrl && (
                         <motion.div
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
@@ -443,7 +448,8 @@ export default function ProjectDetailPage() {
                             </Link>
                           </Button>
                         </motion.div>
-
+                        )}
+                        {project.githubUrl && (
                         <motion.div
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
@@ -459,6 +465,7 @@ export default function ProjectDetailPage() {
                             </Link>
                           </Button>
                         </motion.div>
+                        )}
                       </div>
                     </div>
                   </motion.div>

@@ -5,8 +5,15 @@ import React from "react";
 import ArrowButton from "./ArrowButton";
 import { IconBrandGithub, IconExternalLink } from "@tabler/icons-react";
 import Tags from "./Tags";
+import { AllProjects } from "@/constants/projects";
 
-const ProjectCard = ({ project, index }: { project: any; index: number }) => {
+const ProjectCard = ({
+  project,
+  index,
+}: {
+  project: AllProjects;
+  index: number;
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0, filter: "blur(10px)" }}

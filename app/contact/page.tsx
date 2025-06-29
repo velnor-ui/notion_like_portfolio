@@ -1,7 +1,7 @@
 import ContactForm from "@/components/contact-form";
 import React from "react";
 import ContactMethods from "@/components/contact-method";
-import SocialLinks from "@/components/social-links";
+import SocialLinks from "@/components/SocialLinks";
 import type { Metadata } from "next";
 import SectionHeader from "@/components/SectionHeader";
 

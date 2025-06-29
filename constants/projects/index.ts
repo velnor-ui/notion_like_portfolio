@@ -53,21 +53,22 @@ export const featuredProjects: Project[] = [
   },
 ];
 
-interface ProjectType {
+export interface ProjectType {
   id: string;
   title: string;
   description: string;
-  longDescription: string;
-  images: string[];
-  tags: string[];
-  category: string;
-  date: string;
-  client: string;
-  challenges: string[];
-  solutions: string[];
-  codeSnippet: string;
-  githubUrl: string;
-  liveUrl: string;
+  longDescription?: string;
+  images?: string[];
+  tags?: string[];
+  category?: string;
+  date?: string;
+  client?: string;
+  challenges?: string[];
+  solutions?: string[];
+  codeSnippet?: string;
+  githubUrl?: string;
+  liveUrl?: string;
+  status?: string;
 }
 
 export const projects: ProjectType[] = [
@@ -83,6 +84,7 @@ export const projects: ProjectType[] = [
       "/placeholder.svg?height=600&width=800",
       "/placeholder.svg?height=600&width=800",
     ],
+    status: "Live",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Stripe"],
     category: "Full Stack",
     date: "January 2023",
@@ -487,7 +489,7 @@ const searchRecipes = async (req, res) => {
   },
 ];
 
-interface AllProjects {
+export interface AllProjects {
   id: string;
   title: string;
   image: string;

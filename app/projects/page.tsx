@@ -1,16 +1,8 @@
 "use client";
 
-import ArrowButton from "@/components/ArrowButton";
 import { allProjects } from "@/constants/projects";
-import {
-  IconChevronDown,
-  IconExternalLink,
-  IconBrandGithub,
-  IconSearch,
-} from "@tabler/icons-react";
+import { IconChevronDown, IconSearch } from "@tabler/icons-react";
 import { motion } from "motion/react";
-import Image from "next/image";
-import Link from "next/link";
 import React, { useState } from "react";
 import PageSEO from "@/components/PageSEO";
 import SectionHeader from "@/components/SectionHeader";
@@ -69,7 +61,6 @@ const CustomSelect = ({
 export default function ProjectsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
   const filteredProjects = allProjects.filter((project) => {
     const matchesSearch =

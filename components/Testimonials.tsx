@@ -4,11 +4,19 @@ import React, { useState } from "react";
 import { motion, AnimatePresence, Variants } from "motion/react";
 import { TESTIMONIALS } from "../constants/testimonials";
 
+interface Testimonial {
+  name: string;
+  position: string;
+  company: string;
+  testimonial: string;
+  avatar: string;
+}
+
 const TestimonialCard = ({
   testimonial,
   direction,
 }: {
-  testimonial: any;
+  testimonial: Testimonial;
   direction: number;
 }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -65,7 +73,7 @@ const TestimonialCard = ({
       >
         {/* Quote */}
         <motion.p className="mb-8 text-lg font-normal leading-relaxed text-neutral-700 dark:text-neutral-400">
-          "{testimonial.testimonial}"
+          &quot;{testimonial.testimonial}&quot;
         </motion.p>
 
         {/* Profile section */}
