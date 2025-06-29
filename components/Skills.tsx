@@ -1,23 +1,23 @@
 import { skills, technologies } from "@/lib/constants";
-import { motion } from "motion/react";
 import React from "react";
 import { Icon } from "./icon";
+import MotionDiv from "./MotionDiv";
 
 const Skills = () => {
   return (
-    <section className="container">
+    <section className="container my-6">
       <div className="space-y-6">
         <div>
           <h2 className="text-3xl font-bold">Skills & Expertise</h2>
-          <p className="text-muted-foreground mt-2">
+          <p className="mt-2 text-muted-foreground">
             Technologies and tools I work with
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           <div className="grid grid-cols-2 gap-6">
             {skills.map((skill, index) => (
-              <motion.div
+              <MotionDiv
                 key={skill.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -26,24 +26,24 @@ const Skills = () => {
                   scale: 1.05,
                   transition: { duration: 0.2 },
                 }}
-                className="bg-muted/50 p-6 rounded-lg border border-border/50 hover:border-primary/50 transition-colors group"
+                className="group rounded-lg border border-border/50 bg-muted/50 p-6 transition-colors hover:border-primary/50"
               >
                 <div className="flex items-center space-x-4">
-                  <motion.div
-                    className={`p-3 rounded-lg bg-background ${skill.color} group-hover:scale-110 transition-transform`}
+                  <MotionDiv
+                    className={`rounded-lg bg-background p-3 ${skill.color} transition-transform group-hover:scale-110`}
                     whileHover={{ rotate: 10 }}
                   >
-                    <Icon name={skill.icon} className="w-6 h-6" />
-                  </motion.div>
+                    <Icon name={skill.icon} className="h-6 w-6" />
+                  </MotionDiv>
                   <span className="font-medium">{skill.name}</span>
                 </div>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
 
           <div className="grid grid-cols-3 gap-4">
             {technologies.map((tech, index) => (
-              <motion.div
+              <MotionDiv
                 key={tech.name}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -53,16 +53,16 @@ const Skills = () => {
                   rotate: 5,
                   transition: { duration: 0.2 },
                 }}
-                className="flex flex-col items-center justify-center p-4 border rounded-lg hover:border-primary/50 transition-colors group"
+                className="group flex flex-col items-center justify-center rounded-lg border p-4 transition-colors hover:border-primary/50"
               >
-                <motion.div
-                  className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 ${tech.color} group-hover:scale-110 transition-transform`}
+                <MotionDiv
+                  className={`mb-2 flex h-12 w-12 items-center justify-center rounded-full ${tech.color} transition-transform group-hover:scale-110`}
                   whileHover={{ rotate: 10 }}
                 >
-                  <Icon name={tech.icon} className="w-6 h-6" />
-                </motion.div>
+                  <Icon name={tech.icon} className="h-6 w-6" />
+                </MotionDiv>
                 <span className="text-sm font-medium">{tech.name}</span>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
         </div>

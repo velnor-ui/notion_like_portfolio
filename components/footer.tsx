@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion, Variants } from "motion/react";
 import { useState, useEffect } from "react";
-import Logo from "./logo";
+import Logo from "./Logo";
 import {
   IconBrandLinkedin,
   IconBrandX,
@@ -25,7 +25,7 @@ const navigationLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -36,7 +36,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
@@ -45,7 +45,7 @@ const itemVariants = {
   },
 };
 
-const iconHoverVariants = {
+const iconHoverVariants: Variants = {
   rest: { scale: 1, rotate: 0 },
   hover: {
     scale: 1.15,
@@ -57,7 +57,7 @@ const iconHoverVariants = {
   },
 };
 
-const linkHoverVariants = {
+const linkHoverVariants: Variants = {
   rest: { x: 0 },
   hover: {
     x: 4,

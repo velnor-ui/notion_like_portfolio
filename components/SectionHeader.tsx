@@ -18,7 +18,7 @@ const SectionHeader = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="mx-auto mb-16 max-w-4xl text-start"
+      className="mx-auto mb-16 max-w-6xl text-start"
     >
       {badge && (
         <div className="mb-6 inline-flex items-center justify-center rounded-2xl border border-neutral-300 bg-black/10 p-3 backdrop-blur-sm dark:border-neutral-800 dark:bg-white/10">
