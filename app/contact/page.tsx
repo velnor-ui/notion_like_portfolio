@@ -1,9 +1,10 @@
-import ContactForm from "@/components/contact-form";
+import ContactForm from "@/components/ContactForm";
 import React from "react";
-import ContactMethods from "@/components/contact-method";
+import ContactMethods from "@/components/ContactMethods";
 import SocialLinks from "@/components/SocialLinks";
 import type { Metadata } from "next";
 import SectionHeader from "@/components/SectionHeader";
+import Container from "@/components/Container";
 
 export const metadata: Metadata = {
   title: "Contact | Developer Portfolio",
@@ -34,50 +35,55 @@ export const metadata: Metadata = {
 
 export default function NotionContactForm() {
   return (
-    <main
-      className="mx-auto min-h-screen max-w-6xl"
-      role="main"
-      id="main-content"
-      tabIndex={-1}
-    >
+    <Container role="main" id="main-content" className="py-20">
       {/* Skip to content link for accessibility */}
-      <a href="#main-content" className="sr-only focus:not-sr-only">
+      <a
+        href="#main-content"
+        className="sr-only focus:absolute focus:left-4 focus:top-4 focus:rounded-md focus:bg-primary/90 focus:px-3 focus:py-2 focus:text-white"
+      >
         Skip to main content
       </a>
+
       {/* Header */}
-      <header
-        className="border-b px-6 py-12"
-        role="banner"
-        aria-label="Contact Page Header"
-      >
+      <header role="banner" aria-label="Contact Page Header" className="pt-20">
         <SectionHeader
           title="Get in touch"
           description="I'd love to hear about your project and how I can help bring your ideas to life."
         />
       </header>
+
       <section
-        className="mx-auto max-w-4xl px-6 pb-12"
+        className="mx-auto max-w-5xl pb-16"
         aria-label="Contact Form and Information"
       >
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
-          {/* Contact Form */}
-          <ContactForm />
-          {/* Contact Info Sidebar */}
-          <aside className="space-y-8" aria-label="Contact Methods Sidebar">
-            {/* Contact Methods */}
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+          <div className="col-span-2">
+            <ContactForm />
+          </div>
+
+          <aside
+            className="col-span-1 space-y-10 divide-y divide-neutral-200 dark:divide-neutral-800 md:space-y-8 md:divide-y-0"
+            aria-label="Contact Methods Sidebar"
+          >
             <ContactMethods />
-            {/* Social Links */}
+
             <SocialLinks />
-            {/* Response Time */}
-            <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-800 dark:bg-neutral-900">
-              <h4 className="mb-2 font-medium">Quick Response</h4>
-              <p className="rounded-lg bg-primary/10 p-4 text-sm">
+
+            <div
+              className="rounded-lg border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-800 dark:bg-neutral-900"
+              aria-describedby="response-time-description"
+            >
+              <h2 className="mb-2 text-base font-semibold">Quick Response</h2>
+              <p
+                id="response-time-description"
+                className="rounded-lg bg-primary/10 p-4 text-sm leading-relaxed"
+              >
                 I typically respond within 24 hours on weekdays.
               </p>
             </div>
           </aside>
         </div>
       </section>
-    </main>
+    </Container>
   );
 }

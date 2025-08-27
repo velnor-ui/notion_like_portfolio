@@ -101,12 +101,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Toaster />
-          <div className="mx-auto flex min-h-screen max-w-6xl flex-col pt-16">
-            <header role="banner" aria-label="Site Header">
+          <div>
+            <header role="banner" aria-label="Site Header" className="w-screen bg-background">
               <Header />
             </header>
             <main
-              className="mx-auto max-w-5xl flex-1"
               role="main"
               id="main-content"
               tabIndex={-1}
