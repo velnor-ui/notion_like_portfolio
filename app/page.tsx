@@ -6,16 +6,18 @@ import FeaturedBlogs from "@/components/FeaturedBlogs";
 import Skills from "@/components/Skills";
 import Testimonials from "@/components/Testimonials";
 
+const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || "https://yourdomain.com";
+
 export const metadata: Metadata = {
   title: "Home | Developer Portfolio",
   description: "Welcome to my Notion-themed developer portfolio.",
   openGraph: {
     title: "Home | Developer Portfolio",
     description: "Welcome to my Notion-themed developer portfolio.",
-    url: "https://yourdomain.com/",
+    url: `${DOMAIN}/`,
     images: [
       {
-        url: "/api/og?title=Home&path=/",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Home Page OG Image",
@@ -26,10 +28,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Home | Developer Portfolio",
     description: "Welcome to my Notion-themed developer portfolio.",
-    images: ["/api/og?title=Home&path=/"],
+    images: ["/og-image.png"],
   },
   alternates: {
-    canonical: "https://yourdomain.com/",
+    canonical: `${DOMAIN}/`,
   },
 };
 

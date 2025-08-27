@@ -24,6 +24,9 @@ export const generateMetadata = async ({
 }) => {
   const { slug } = await params;
   const frontmatter = await getBlogFrontmatterBySlug(slug);
+
+  const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || "https://yourdomain.com";
+
   if (!frontmatter) {
     return {
       title: "Blog not found",
@@ -32,6 +35,29 @@ export const generateMetadata = async ({
   return {
     title: frontmatter.title + " | Muhammed Sanjid",
     description: frontmatter.description,
+    openGraph: {
+      title: frontmatter.title + " | Muhammed Sanjid",
+      description: frontmatter.description,
+      type: "article",
+      url: `${DOMAIN}/blog/${slug}`,
+      images: [
+        {
+          url: frontmatter.image,
+          width: 1200,
+          height: 630,
+          alt: frontmatter.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: frontmatter.title + " | Muhammed Sanjid",
+      description: frontmatter.description,
+      images: [frontmatter.image],
+    },
+    alternates: {
+      canonical: `${DOMAIN}/blog/${slug}`,
+    },
   };
 };
 

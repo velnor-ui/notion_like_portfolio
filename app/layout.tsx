@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "Developer Portfolio",
     images: [
       {
-        url: "/api/og?title=Developer%20Portfolio",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Developer Portfolio Open Graph Image",
@@ -37,8 +37,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Developer Portfolio",
     description: "A Notion-themed developer portfolio",
-    images: ["/api/og?title=Developer%20Portfolio"],
-    creator: "@yourtwitter",
+    images: ["/og-image.png"],
+    creator: "@dev_sanjid",
   },
   alternates: {
     canonical: "/",

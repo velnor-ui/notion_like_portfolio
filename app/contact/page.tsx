@@ -6,16 +6,18 @@ import type { Metadata } from "next";
 import SectionHeader from "@/components/SectionHeader";
 import Container from "@/components/Container";
 
+const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || "https://yourdomain.com";
+
 export const metadata: Metadata = {
   title: "Contact | Developer Portfolio",
   description: "Get in touch to discuss your project or collaboration.",
   openGraph: {
     title: "Contact | Developer Portfolio",
     description: "Get in touch to discuss your project or collaboration.",
-    url: "https://yourdomain.com/contact",
+    url: `${DOMAIN}/contact`,
     images: [
       {
-        url: "/api/og?title=Contact&path=/contact",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Contact Page OG Image",
@@ -26,10 +28,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Contact | Developer Portfolio",
     description: "Get in touch to discuss your project or collaboration.",
-    images: ["/api/og?title=Contact&path=/contact"],
+    images: ["/og-image.png"],
   },
   alternates: {
-    canonical: "https://yourdomain.com/contact",
+    canonical: `${DOMAIN}/contact`,
   },
 };
 
