@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="bg-neutral-50 dark:bg-neutral-900 py-20">
+    <main className="bg-neutral-50 py-20 dark:bg-neutral-900">
       <Hero />
       <FeaturedProjects />
       <Skills />

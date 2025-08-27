@@ -4,21 +4,23 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/Header";
-import Footer from "@/components/footer";
+import Footer from "@/components/Footer";
 import { Toaster } from "sonner";
 import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
+const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || "https://yourdomain.com";
+
 export const metadata: Metadata = {
   title: "Developer Portfolio",
   description: "A Notion-themed developer portfolio",
   generator: "v0.dev",
-  metadataBase: new URL("https://yourdomain.com"), // <-- Set your domain
+  metadataBase: new URL(DOMAIN), // <-- Set your domain
   openGraph: {
     title: "Developer Portfolio",
     description: "A Notion-themed developer portfolio",
-    url: "https://yourdomain.com",
+    url: DOMAIN,
     siteName: "Developer Portfolio",
     images: [
       {
@@ -72,7 +74,7 @@ export default function RootLayout({
           name="apple-mobile-web-app-status-bar-style"
           content="black-translucent"
         />
-        <link rel="canonical" href="https://yourdomain.com/" />
+        <link rel="canonical" href={DOMAIN} />
         <link rel="icon" href="/favicon.ico" />
         <meta name="robots" content="index, follow" />
         <script
@@ -82,13 +84,13 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Your Name",
-              url: "https://yourdomain.com",
+              url: DOMAIN,
               sameAs: [
                 "https://github.com/yourusername",
                 "https://linkedin.com/in/yourusername",
               ],
               jobTitle: "Frontend Developer",
-              image: "https://yourdomain.com/your-photo.jpg",
+              image: `${DOMAIN}/your-photo.jpg`,
             }),
           }}
         />
@@ -102,14 +104,14 @@ export default function RootLayout({
         >
           <Toaster />
           <div>
-            <header role="banner" aria-label="Site Header" className="w-screen bg-background">
+            <header
+              role="banner"
+              aria-label="Site Header"
+              className="w-screen bg-background"
+            >
               <Header />
             </header>
-            <main
-              role="main"
-              id="main-content"
-              tabIndex={-1}
-            >
+            <main role="main" id="main-content" tabIndex={-1}>
               {children}
             </main>
             <footer role="contentinfo" aria-label="Site Footer">

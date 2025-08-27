@@ -1,74 +1,63 @@
-import { skills, technologies } from "@/lib/constants";
-import React from "react";
-import { Icon } from "./icon";
-import MotionDiv from "./MotionDiv";
+"use client";
 
-const Skills = () => {
+import { motion } from "framer-motion";
+import Container from "./Container";
+import SectionHeader from "./SectionHeader";
+import { skillCategories } from "@/lib/constants";
+
+export default function Skills() {
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 },
+  };
+
   return (
-    <section className="container my-6">
-      <div className="space-y-6">
-        <div>
-          <h2 className="text-3xl font-bold">Skills & Expertise</h2>
-          <p className="mt-2 text-muted-foreground">
-            Technologies and tools I work with
-          </p>
-        </div>
+    <Container>
+      <SectionHeader
+        title="Skills"
+        description="Technologies I'm proficient in"
+        badge={<span className="text-xs font-semibold"></span>}
+        badgeText="Skills"
+      />
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          <div className="grid grid-cols-2 gap-6">
-            {skills.map((skill, index) => (
-              <MotionDiv
-                key={skill.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.2 },
-                }}
-                className="group rounded-lg border border-border/50 bg-muted/50 p-6 transition-colors hover:border-primary/50"
-              >
-                <div className="flex items-center space-x-4">
-                  <MotionDiv
-                    className={`rounded-lg bg-background p-3 ${skill.color} transition-transform group-hover:scale-110`}
-                    whileHover={{ rotate: 10 }}
-                  >
-                    <Icon name={skill.icon} className="h-6 w-6" />
-                  </MotionDiv>
-                  <span className="font-medium">{skill.name}</span>
-                </div>
-              </MotionDiv>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-3 gap-4">
-            {technologies.map((tech, index) => (
-              <MotionDiv
-                key={tech.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                whileHover={{
-                  scale: 1.1,
-                  rotate: 5,
-                  transition: { duration: 0.2 },
-                }}
-                className="group flex flex-col items-center justify-center rounded-lg border p-4 transition-colors hover:border-primary/50"
-              >
-                <MotionDiv
-                  className={`mb-2 flex h-12 w-12 items-center justify-center rounded-full ${tech.color} transition-transform group-hover:scale-110`}
-                  whileHover={{ rotate: 10 }}
+      <div className="grid gap-6 md:grid-cols-3">
+        {skillCategories.map((category) => (
+          <div
+            className="space-y-4 rounded-2xl border p-3 md:p-4"
+            key={category.title}
+          >
+            <h2 className="text-lg font-semibold">{category.title}</h2>
+            <p>My {category.title.toLowerCase()} skills and technologies</p>
+            <motion.div
+              className="flex flex-wrap gap-2"
+              variants={container}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+            >
+              {category.skills.map((skill) => (
+                <motion.div
+                  className="rounded-md border bg-primary/10 px-2 py-1 text-xs font-semibold tracking-tight backdrop-blur-xl"
+                  key={skill}
+                  variants={item}
                 >
-                  <Icon name={tech.icon} className="h-6 w-6" />
-                </MotionDiv>
-                <span className="text-sm font-medium">{tech.name}</span>
-              </MotionDiv>
-            ))}
+                  <span>{skill}</span>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
-        </div>
+        ))}
       </div>
-    </section>
+    </Container>
   );
-};
-
-export default Skills;
+}

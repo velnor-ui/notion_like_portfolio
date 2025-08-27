@@ -17,7 +17,6 @@ import {
   Github,
   ExternalLink,
   Calendar,
-  Code,
   CheckCircle,
   XCircle,
   User,
@@ -26,9 +25,9 @@ import {
 } from "lucide-react";
 import { projects } from "@/constants/projects";
 import { useRef } from "react";
-import PageSEO from "@/components/PageSEO";
 import SectionHeader from "@/components/SectionHeader";
 import Tags from "@/components/Tags";
+import Container from "@/components/Container";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -107,8 +106,8 @@ export default function ProjectDetailPage() {
               Project Not Found
             </h1>
             <p className="max-w-md text-neutral-600 dark:text-neutral-400">
-              The project you&apos;re looking for doesn&apos;t exist or has been moved to
-              a different location.
+              The project you&apos;re looking for doesn&apos;t exist or has been
+              moved to a different location.
             </p>
           </div>
 
@@ -129,155 +128,144 @@ export default function ProjectDetailPage() {
   }
 
   return (
-    <>
-      <PageSEO
-        title={project.title}
-        description={project.description}
-        ogImage={project.images?.[0]}
-        canonical={`https://yourdomain.com/projects/${slug}`}
-        twitterCard="summary_large_image"
-        twitterTitle={project.title}
-        twitterDescription={project.description}
-        twitterImage={project.images?.[0]}
-      />
-      <main ref={containerRef} className="relative">
-        <motion.div
-          className="container space-y-4 py-8 text-xs md:space-y-8 md:py-12 md:text-sm"
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-        >
-          {/* Navigation */}
-          <motion.div variants={slideInVariants}>
-            <motion.div whileHover={{ x: -4 }} transition={{ duration: 0.2 }}>
-              <Button
-                variant="ghost"
-                asChild
-                className="group -ml-4 text-xs text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 md:text-sm"
-              >
-                <Link href="/projects">
-                  <motion.div
-                    whileHover={{ x: -2 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
-                  </motion.div>
-                  Back to Projects
-                </Link>
-              </Button>
+    <Container ref={containerRef} className="relative text-sm md:text-base">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+        className="space-y-4 md:space-y-6"
+      >
+        {/* Navigation */}
+        <motion.div variants={slideInVariants}>
+          <motion.div whileHover={{ x: -4 }} transition={{ duration: 0.2 }}>
+            <Button
+              variant="ghost"
+              asChild
+              className="group -ml-4 text-xs text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 md:text-sm"
+            >
+              <Link href="/projects">
+                <motion.div
+                  whileHover={{ x: -2 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                </motion.div>
+                Back to Projects
+              </Link>
+            </Button>
+          </motion.div>
+        </motion.div>
+
+        {/* Project Header */}
+        <motion.section variants={itemVariants}>
+          <motion.div
+            style={{ y: headerY, opacity: headerOpacity }}
+            className="space-y-2 md:space-y-6"
+          >
+            <SectionHeader
+              title={project.title}
+              description={project.description}
+            />
+
+            {/* Tags */}
+            {project.tags && <Tags tags={project.tags} />}
+
+            {/* Meta Information */}
+            <motion.div
+              className="flex flex-wrap items-center gap-2 text-[10px] text-neutral-500 dark:text-neutral-500 md:gap-6 md:text-xs lg:text-sm"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+            >
+              <div className="flex items-center gap-2">
+                <Calendar className="h-3 w-3 md:h-4 md:w-4" />
+                <span>{project.date}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <User className="h-3 w-3 md:h-4 md:w-4" />
+                <span>{project.client}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="h-3 w-3 md:h-4 md:w-4" />
+                <span>5 min read</span>
+              </div>
             </motion.div>
           </motion.div>
+        </motion.section>
 
-          {/* Project Header */}
-          <motion.section variants={itemVariants}>
-            <motion.div
-              style={{ y: headerY, opacity: headerOpacity }}
-              className="space-y-2 md:space-y-6"
-            >
-              <SectionHeader
-                title={project.title}
-                description={project.description}
-              />
+        {/* Project Images */}
+        <motion.section variants={fadeInScale}>
+          <motion.div
+            className="relative"
+            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <Carousel className="w-full">
+              <CarouselContent className="p-2 md:p-4">
+                {project.images?.map((image, index) => (
+                  <CarouselItem key={index} className="p-4">
+                    <motion.div
+                      className="relative aspect-video overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800"
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      <Image
+                        src={image || "/placeholder.svg"}
+                        alt={`${project.title} screenshot ${index + 1}`}
+                        fill
+                        className="overflow-hidden rounded-2xl object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                    </motion.div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-4 border-neutral-200 bg-white/90 backdrop-blur-sm hover:bg-white dark:border-neutral-800 dark:bg-neutral-900/90 dark:hover:bg-neutral-900" />
+              <CarouselNext className="right-4 border-neutral-200 bg-white/90 backdrop-blur-sm hover:bg-white dark:border-neutral-800 dark:bg-neutral-900/90 dark:hover:bg-neutral-900" />
+            </Carousel>
+          </motion.div>
+        </motion.section>
 
-              {/* Tags */}
-              {project.tags && <Tags tags={project.tags} />}
-
-              {/* Meta Information */}
+        {/* Main Content */}
+        <motion.section variants={itemVariants}>
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-16">
+            {/* Left Column - Main Content */}
+            <div className="space-y-12 lg:col-span-2">
+              {/* Overview */}
               <motion.div
-                className="flex flex-wrap items-center gap-2 text-[10px] text-neutral-500 dark:text-neutral-500 md:gap-6 md:text-xs lg:text-sm"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="space-y-4"
               >
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-3 w-3 md:h-4 md:w-4" />
-                  <span>{project.date}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <User className="h-3 w-3 md:h-4 md:w-4" />
-                  <span>{project.client}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="h-3 w-3 md:h-4 md:w-4" />
-                  <span>5 min read</span>
+                <h2 className="text-lg font-bold md:text-xl lg:text-2xl">
+                  Overview
+                </h2>
+                <div className="prose prose-neutral dark:prose-invert max-w-none">
+                  <p className="whitespace-pre-line leading-relaxed text-neutral-600 dark:text-neutral-400">
+                    {project.longDescription}
+                  </p>
                 </div>
               </motion.div>
-            </motion.div>
-          </motion.section>
 
-          {/* Project Images */}
-          <motion.section variants={fadeInScale}>
-            <motion.div
-              className="relative"
-              whileInView={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 30 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <Carousel className="w-full">
-                <CarouselContent>
-                  {project.images?.map((image, index) => (
-                    <CarouselItem key={index}>
-                      <motion.div
-                        className="relative aspect-video overflow-hidden rounded-2xl border border-neutral-200 shadow-2xl dark:border-neutral-800"
-                        whileHover={{ scale: 1.02 }}
-                        transition={{ duration: 0.4 }}
-                      >
-                        <Image
-                          src={image || "/placeholder.svg"}
-                          alt={`${project.title} screenshot ${index + 1}`}
-                          fill
-                          className="object-cover transition-transform duration-700 hover:scale-105"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-                      </motion.div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="left-4 border-neutral-200 bg-white/90 backdrop-blur-sm hover:bg-white dark:border-neutral-800 dark:bg-neutral-900/90 dark:hover:bg-neutral-900" />
-                <CarouselNext className="right-4 border-neutral-200 bg-white/90 backdrop-blur-sm hover:bg-white dark:border-neutral-800 dark:bg-neutral-900/90 dark:hover:bg-neutral-900" />
-              </Carousel>
-            </motion.div>
-          </motion.section>
-
-          {/* Main Content */}
-          <motion.section variants={itemVariants}>
-            <div className="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-16">
-              {/* Left Column - Main Content */}
-              <div className="space-y-12 lg:col-span-2">
-                {/* Overview */}
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6 }}
-                  viewport={{ once: true }}
-                  className="space-y-4"
-                >
-                  <h2 className="text-lg font-bold md:text-xl lg:text-2xl">
-                    Overview
-                  </h2>
-                  <div className="prose prose-neutral dark:prose-invert max-w-none">
-                    <p className="whitespace-pre-line leading-relaxed text-neutral-600 dark:text-neutral-400">
-                      {project.longDescription}
-                    </p>
-                  </div>
-                </motion.div>
-
-                {/* Challenges & Solutions */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  viewport={{ once: true }}
-                  className="space-y-6"
-                >
-                  <h2 className="text-lg font-bold md:text-xl lg:text-2xl">
-                    Challenges & Solutions
-                  </h2>
-                  <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                    {/* Challenges */}
-                    {project.challenges && (
+              {/* Challenges & Solutions */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="space-y-6"
+              >
+                <h2 className="text-lg font-bold md:text-xl lg:text-2xl">
+                  Challenges & Solutions
+                </h2>
+                <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                  {/* Challenges */}
+                  {project.challenges && (
                     <motion.div
                       className="space-y-4"
                       whileHover={{ scale: 1.02 }}
@@ -307,10 +295,10 @@ export default function ProjectDetailPage() {
                         </ul>
                       </div>
                     </motion.div>
-                    )}
+                  )}
 
-                    {/* Solutions */}
-                    {project.solutions && (
+                  {/* Solutions */}
+                  {project.solutions && (
                     <motion.div
                       className="space-y-4"
                       whileHover={{ scale: 1.02 }}
@@ -340,99 +328,64 @@ export default function ProjectDetailPage() {
                         </ul>
                       </div>
                     </motion.div>
-                    )}
+                  )}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Right Column - Sidebar */}
+            <div className="space-y-6">
+              {/* Project Details Card */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="sticky top-8"
+              >
+                <motion.div
+                  className="rounded-2xl border border-neutral-200 bg-white/80 p-4 backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-900/80 md:p-6"
+                  whileHover={{ scale: 1.02, y: -4 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="mb-6 flex items-center gap-2">
+                    <Sparkle className="h-4 w-4 text-neutral-600 dark:text-neutral-400 md:h-5 md:w-5" />
+                    <h3 className="text-lg font-semibold md:text-xl">
+                      Project Details
+                    </h3>
                   </div>
-                </motion.div>
 
-                {/* Code Snippet */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  viewport={{ once: true }}
-                  className="space-y-4"
-                >
-                  <h2 className="flex items-center text-lg font-bold md:text-xl lg:text-2xl">
-                    <Code className="mr-2 h-4 w-4 md:h-5 md:w-5" />
-                    Code Highlight
-                  </h2>
-                  <motion.div
-                    className="group relative overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900"
-                    whileHover={{ scale: 1.01 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <div className="flex items-center justify-between border-b border-neutral-200 bg-neutral-100/50 px-3 py-2 dark:border-neutral-800 dark:bg-neutral-800/50 md:px-4 md:py-3">
-                      <div className="flex items-center gap-2">
-                        <div className="h-3 w-3 rounded-full bg-red-400" />
-                        <div className="h-3 w-3 rounded-full bg-yellow-400" />
-                        <div className="h-3 w-3 rounded-full bg-green-400" />
+                  <div className="space-y-4 md:space-y-6">
+                    <div className="space-y-2 md:space-y-4">
+                      <div>
+                        <h4 className="mb-1 font-medium text-neutral-700 dark:text-neutral-300">
+                          Category
+                        </h4>
+                        <p className="text-neutral-600 dark:text-neutral-400">
+                          {project.category}
+                        </p>
                       </div>
-                      <span className="text-[10px] text-neutral-500 md:text-xs">
-                        code-snippet.js
-                      </span>
-                    </div>
-                    <div className="overflow-x-auto p-3 md:p-4">
-                      <pre className="text-xs text-neutral-700 dark:text-neutral-300 md:text-sm">
-                        <code>{project.codeSnippet}</code>
-                      </pre>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              </div>
-
-              {/* Right Column - Sidebar */}
-              <div className="space-y-6">
-                {/* Project Details Card */}
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6 }}
-                  viewport={{ once: true }}
-                  className="sticky top-8"
-                >
-                  <motion.div
-                    className="rounded-2xl border border-neutral-200 bg-white/80 p-4 backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-900/80 md:p-6"
-                    whileHover={{ scale: 1.02, y: -4 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="mb-6 flex items-center gap-2">
-                      <Sparkle className="h-4 w-4 text-neutral-600 dark:text-neutral-400 md:h-5 md:w-5" />
-                      <h3 className="text-lg font-semibold md:text-xl">
-                        Project Details
-                      </h3>
-                    </div>
-
-                    <div className="space-y-4 md:space-y-6">
-                      <div className="space-y-2 md:space-y-4">
-                        <div>
-                          <h4 className="mb-1 font-medium text-neutral-700 dark:text-neutral-300">
-                            Category
-                          </h4>
-                          <p className="text-neutral-600 dark:text-neutral-400">
-                            {project.category}
-                          </p>
-                        </div>
-                        <div>
-                          <h4 className="mb-1 font-medium text-neutral-700 dark:text-neutral-300">
-                            Timeline
-                          </h4>
-                          <p className="text-neutral-600 dark:text-neutral-400">
-                            {project.date}
-                          </p>
-                        </div>
-                        <div>
-                          <h4 className="mb-1 font-medium text-neutral-700 dark:text-neutral-300">
-                            Client
-                          </h4>
-                          <p className="text-neutral-600 dark:text-neutral-400">
-                            {project.client}
-                          </p>
-                        </div>
+                      <div>
+                        <h4 className="mb-1 font-medium text-neutral-700 dark:text-neutral-300">
+                          Timeline
+                        </h4>
+                        <p className="text-neutral-600 dark:text-neutral-400">
+                          {project.date}
+                        </p>
                       </div>
+                      <div>
+                        <h4 className="mb-1 font-medium text-neutral-700 dark:text-neutral-300">
+                          Client
+                        </h4>
+                        <p className="text-neutral-600 dark:text-neutral-400">
+                          {project.client}
+                        </p>
+                      </div>
+                    </div>
 
-                      {/* Action Buttons */}
-                      <div className="grid grid-cols-1 gap-2 md:gap-2 lg:gap-3">
-                        {project.liveUrl && (
+                    {/* Action Buttons */}
+                    <div className="grid grid-cols-1 gap-2 md:gap-2 lg:gap-3">
+                      {project.liveUrl && (
                         <motion.div
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
@@ -448,8 +401,8 @@ export default function ProjectDetailPage() {
                             </Link>
                           </Button>
                         </motion.div>
-                        )}
-                        {project.githubUrl && (
+                      )}
+                      {project.githubUrl && (
                         <motion.div
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
@@ -465,16 +418,15 @@ export default function ProjectDetailPage() {
                             </Link>
                           </Button>
                         </motion.div>
-                        )}
-                      </div>
+                      )}
                     </div>
-                  </motion.div>
+                  </div>
                 </motion.div>
-              </div>
+              </motion.div>
             </div>
-          </motion.section>
-        </motion.div>
-      </main>
-    </>
+          </div>
+        </motion.section>
+      </motion.div>
+    </Container>
   );
 }

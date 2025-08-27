@@ -3,13 +3,13 @@ import React from "react";
 const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || "https://yourdomain.com";
 
 export const metadata = {
-  title: "About | Developer Portfolio",
+  title: "Projects | Developer Portfolio",
   description: "Learn more about me, my experience, and my skills.",
   openGraph: {
-    title: "About | Developer Portfolio",
+    title: "Projects | Developer Portfolio",
     description: "Learn more about me, my experience, and my skills.",
     type: "website",
-    url: `${DOMAIN}/about`,
+    url: `${DOMAIN}/projects`,
     siteName: "Developer Portfolio",
     images: [
       {
@@ -21,7 +21,7 @@ export const metadata = {
     ],
   },
   twitter: {
-    title: "About | Developer Portfolio",
+    title: "Projects | Developer Portfolio",
     description: "Learn more about me, my experience, and my skills.",
     card: "summary_large_image",
     images: [
@@ -34,11 +34,11 @@ export const metadata = {
     ],
   },
   alternates: {
-    canonical: `${DOMAIN}/about`,
+    canonical: `${DOMAIN}/projects`,
   },
 };
 
-export default function AboutLayout({
+export default function ProjectsLayout({
   children,
 }: {
   children: React.ReactNode;

@@ -126,7 +126,6 @@ export const certifications: Certifications[] = [
   },
 ];
 
-
 // Update your Hobbies
 
 interface Hobbies {

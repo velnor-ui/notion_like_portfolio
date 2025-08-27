@@ -5,10 +5,11 @@ import Image from "next/image";
 import ArrowButton from "./ArrowButton";
 import MotionDiv from "./MotionDiv";
 import Link from "next/link";
+import Container from "./Container";
 
 const Hero = () => {
   return (
-    <section className="container pt-10 md:pt-20">
+    <Container>
       <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2">
         <MotionDiv
           initial={{ opacity: 0, y: 20 }}
@@ -57,7 +58,7 @@ const Hero = () => {
           />
         </Link>
       </div>
-    </section>
+    </Container>
   );
 };
 

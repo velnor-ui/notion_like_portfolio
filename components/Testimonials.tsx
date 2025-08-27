@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence, Variants } from "motion/react";
 import { TESTIMONIALS } from "../constants/testimonials";
+import Container from "./Container";
+import SectionHeader from "./SectionHeader";
 
 interface Testimonial {
   name: string;
@@ -111,8 +113,10 @@ const TestimonialCard = ({
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
 
-  const paginate = (newDirection: number) => {
+  const paginate = useCallback((newDirection: number) => {
     setDirection(newDirection);
     setCurrentIndex((prev) => {
       if (newDirection === 1) {
@@ -121,120 +125,152 @@ const Testimonials = () => {
         return prev === 0 ? TESTIMONIALS.length - 1 : prev - 1;
       }
     });
-  };
+  }, []);
 
-  const goToSlide = (index: number) => {
-    setDirection(index > currentIndex ? 1 : -1);
-    setCurrentIndex(index);
+  const goToSlide = useCallback(
+    (index: number) => {
+      setDirection(index > currentIndex ? 1 : -1);
+      setCurrentIndex(index);
+      // Pause autoplay briefly when user manually navigates
+      setIsPaused(true);
+      setTimeout(() => setIsPaused(false), 3000);
+    },
+    [currentIndex],
+  );
+
+  // Autoplay functionality
+  useEffect(() => {
+    if (!isAutoPlaying || isPaused) return;
+
+    const interval = setInterval(() => {
+      paginate(1);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, isPaused, paginate]);
+
+  // Pause autoplay on hover
+  const handleMouseEnter = () => setIsPaused(true);
+  const handleMouseLeave = () => setIsPaused(false);
+
+  const toggleAutoplay = () => {
+    setIsAutoPlaying(!isAutoPlaying);
+    setIsPaused(false);
   };
 
   return (
-    <div className="bg-neutral-50 px-4 py-16 dark:bg-black">
-      <div className="mx-auto max-w-4xl">
-        {/* Header */}
-        <motion.div
-          className="mb-16 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <motion.h2
-            className="mb-3 text-3xl font-semibold"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.3 }}
-          >
-            Loved by teams everywhere
-          </motion.h2>
-          <motion.p
-            className="mx-auto max-w-xl text-base text-neutral-600"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.3 }}
-          >
-            See what people are saying about their experience
-          </motion.p>
-        </motion.div>
+    <Container onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      {/* Header */}
+      <SectionHeader
+        className="mb-10"
+        title="Testimonials"
+        description="See what people are saying about their experience"
+      />
 
-        {/* Testimonial Cards */}
-        <div className="relative mb-12 h-80 overflow-hidden">
-          <AnimatePresence mode="wait" custom={direction}>
-            <TestimonialCard
-              key={currentIndex}
-              testimonial={TESTIMONIALS[currentIndex]}
-              direction={direction}
-            />
-          </AnimatePresence>
-        </div>
-
-        {/* Navigation */}
-        <div className="flex items-center justify-center gap-8">
-          {/* Previous button */}
-          <motion.button
-            onClick={() => paginate(-1)}
-            className="rounded-md border p-2 text-neutral-400 transition-all duration-200 hover:border-neutral-300 hover:text-neutral-600"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </motion.button>
-
-          {/* Dots */}
-          <div className="flex gap-2">
-            {TESTIMONIALS.map((_, index) => (
-              <motion.button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`h-2 w-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? "w-6 bg-neutral-800"
-                    : "bg-neutral-300 hover:bg-neutral-400"
-                }`}
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 + 0.5 }}
-              />
-            ))}
-          </div>
-
-          {/* Next button */}
-          <motion.button
-            onClick={() => paginate(1)}
-            className="rounded-md border p-2 text-neutral-400 transition-all duration-200 hover:border-neutral-300 hover:text-neutral-600"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </motion.button>
-        </div>
+      {/* Testimonial Cards */}
+      <div className="relative mb-12 h-80 overflow-hidden py-4">
+        <AnimatePresence mode="wait" custom={direction}>
+          <TestimonialCard
+            key={currentIndex}
+            testimonial={TESTIMONIALS[currentIndex]}
+            direction={direction}
+          />
+        </AnimatePresence>
       </div>
-    </div>
+
+      {/* Navigation */}
+      <div className="flex items-center justify-center gap-8">
+        {/* Previous button */}
+        <motion.button
+          onClick={() => paginate(-1)}
+          className="rounded-md border p-2 text-neutral-400 transition-all duration-200 hover:border-neutral-300 hover:text-neutral-600"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <svg
+            className="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </motion.button>
+
+        {/* Dots */}
+        <div className="flex gap-2">
+          {TESTIMONIALS.map((_, index) => (
+            <motion.button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`h-2 w-2 rounded-full transition-all duration-300 ${
+                index === currentIndex
+                  ? "w-6 bg-neutral-800"
+                  : "bg-neutral-300 hover:bg-neutral-400"
+              }`}
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.1 + 0.5 }}
+            />
+          ))}
+        </div>
+
+        {/* Next button */}
+        <motion.button
+          onClick={() => paginate(1)}
+          className="rounded-md border p-2 text-neutral-400 transition-all duration-200 hover:border-neutral-300 hover:text-neutral-600"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <svg
+            className="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </motion.button>
+      </div>
+
+      {/* Autoplay Controls */}
+      <div className="mt-6 flex justify-center">
+        <motion.button
+          onClick={toggleAutoplay}
+          className="flex items-center gap-2 rounded-md border px-4 py-2 text-sm text-neutral-600 transition-all duration-200 hover:border-neutral-300 hover:text-neutral-800"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          {isAutoPlaying ? (
+            <>
+              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+              </svg>
+              Pause
+            </>
+          ) : (
+            <>
+              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7L8 5z" />
+              </svg>
+              Play
+            </>
+          )}
+        </motion.button>
+      </div>
+    </Container>
   );
 };
 

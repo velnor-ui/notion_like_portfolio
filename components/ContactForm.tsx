@@ -29,7 +29,6 @@ const ContactForm = () => {
   const [hasInteracted, setHasInteracted] = useState<{
     [key: string]: boolean;
   }>({});
-  const [successMessage, setSuccessMessage] = useState("");
 
   // Validation rules
   const validateField = (name: string, value: string) => {
@@ -109,7 +108,7 @@ const ContactForm = () => {
     const status = getFieldStatus(field);
     const isFocused = focusedField === field;
 
-    let base =
+    const base =
       "w-full rounded-lg border py-3 px-4 pl-10 transition-all duration-200 focus:outline-none focus:ring-2 hover:border-neutral-400 dark:bg-neutral-900 dark:text-white";
     if (status === "error")
       return `${base} border-red-300 bg-red-50 focus:ring-red-500 dark:border-red-500/60 dark:bg-red-900/20`;
@@ -213,13 +212,10 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="mx-auto w-full max-w-2xl p-6">
+    <div className="mx-auto mt-2 w-full max-w-2xl md:mr-4">
       <div className="rounded-xl border border-neutral-200 bg-white p-8 shadow-lg dark:border-neutral-800 dark:bg-neutral-950">
         {/* Header */}
         <div className="mb-6">
-          <h2 className="mb-2 text-2xl font-bold text-neutral-900 dark:text-white">
-            Get in Touch
-          </h2>
           <p className="text-neutral-600 dark:text-neutral-400">
             Send me a message and I&apos;ll reply as soon as possible.
           </p>
@@ -379,14 +375,6 @@ const ContactForm = () => {
           </button>
 
           {/* Feedback */}
-          {successMessage && (
-            <p
-              role="status"
-              className="mt-2 text-center text-sm text-green-600 dark:text-green-400"
-            >
-              {successMessage}
-            </p>
-          )}
           {errors.submit && (
             <p
               role="alert"

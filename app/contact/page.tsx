@@ -52,11 +52,8 @@ export default function NotionContactForm() {
         />
       </header>
 
-      <section
-        className="mx-auto max-w-5xl pb-16"
-        aria-label="Contact Form and Information"
-      >
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+      <section aria-label="Contact Form and Information">
+        <div className="grid w-full grid-cols-1 gap-12 md:grid-cols-3">
           <div className="col-span-2">
             <ContactForm />
           </div>

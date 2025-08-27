@@ -17,6 +17,7 @@ import Image from "next/image";
 import SectionHeader from "./SectionHeader";
 import Link from "next/link";
 import Tags from "./Tags";
+import Container from "./Container";
 
 const FeaturedProjects = () => {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
@@ -33,7 +34,7 @@ const FeaturedProjects = () => {
   };
 
   return (
-    <div className="px-4 py-20 md:px-6">
+    <Container>
       {/* Header Section */}
       <SectionHeader
         badge={<IconDeviceImacBolt className="mr-2 h-5 w-5" />}
@@ -43,7 +44,7 @@ const FeaturedProjects = () => {
       />
 
       {/* Projects Grid */}
-      <div className="mb-16 grid grid-cols-1 gap-8 px-4 md:px-6 lg:grid-cols-2">
+      <div className="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-2">
         {featuredProjects.map((project, index) => (
           <motion.div
             key={project.id}
@@ -97,7 +98,7 @@ const FeaturedProjects = () => {
                 {/* Status & Featured Indicators */}
                 <div className="absolute left-4 top-4 flex items-center space-x-2">
                   <div
-                    className={`flex items-center rounded-full border bg-primary-foreground/80 px-3 py-1 backdrop-blur-sm transition-all duration-300 ${
+                    className={`flex items-center rounded-lg border bg-primary-foreground/80 px-3 py-1 backdrop-blur-sm transition-all duration-300 ${
                       hoveredProject === project.id
                         ? "border-neutral-900 bg-white dark:bg-neutral-800"
                         : "border-neutral-200 dark:border-neutral-800"
@@ -121,7 +122,7 @@ const FeaturedProjects = () => {
                 {project.featured && (
                   <div className="absolute right-4 top-4">
                     <div
-                      className={`flex items-center rounded-full bg-neutral-900 px-3 py-1 text-xs font-medium text-white transition-all duration-200 ease-in-out ${
+                      className={`flex items-center rounded-lg bg-neutral-900 px-3 py-1 text-xs font-medium text-white transition-all duration-200 ease-in-out ${
                         hoveredProject === project.id ? "scale-110" : ""
                       }`}
                     >
@@ -210,7 +211,7 @@ const FeaturedProjects = () => {
 
       {/* CTA Section */}
       <motion.div
-        className="rounded-2xl border border-neutral-200 bg-neutral-50 p-12 text-center dark:border-neutral-800 dark:bg-neutral-800"
+        className="rounded-2xl border border-neutral-200 bg-neutral-100 p-12 text-center dark:border-neutral-900 dark:bg-neutral-950"
         style={{
           animation: "fadeInUp 0.6s ease-out 0.6s both",
         }}
@@ -220,9 +221,9 @@ const FeaturedProjects = () => {
             Ready to start your project?
           </h3>
           <p className="mb-8 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400 md:text-base">
-            I&apos;m always excited to collaborate on innovative projects and bring
-            creative ideas to life. Let&apos;s discuss how we can work together to
-            create something exceptional.
+            I&apos;m always excited to collaborate on innovative projects and
+            bring creative ideas to life. Let&apos;s discuss how we can work
+            together to create something exceptional.
           </p>
           <div className="flex w-full flex-col justify-center gap-4 sm:flex-row">
             <ArrowButton link="/contact">Start a Project</ArrowButton>
@@ -230,7 +231,7 @@ const FeaturedProjects = () => {
           </div>
         </div>
       </motion.div>
-    </div>
+    </Container>
   );
 };
 

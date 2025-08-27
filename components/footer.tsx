@@ -89,8 +89,7 @@ export default function Footer() {
       viewport={{ once: true, margin: "-100px" }}
       variants={containerVariants}
     >
-
-      <div className="mx-auto max-w-5xl px-2 sm:px-4 md:px-6 lg:px-8 py-12 md:py-16">
+      <div className="mx-auto max-w-5xl px-2 py-12 sm:px-4 md:px-6 md:py-16 lg:px-8">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-3 lg:gap-16">
           {/* Brand Section */}
           <motion.div variants={itemVariants} className="space-y-4">

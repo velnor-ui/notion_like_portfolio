@@ -39,8 +39,8 @@ export default function Header() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 px-4 transition-all duration-300 ease-in-out md:px-6",
         scrolled
-          ? "top-0 md:top-2 mx-auto max-w-4xl md:rounded-2xl border bg-background/80 shadow-sm backdrop-blur-lg"
-          : "mx-auto max-w-6xl bg-background md:rounded-2xl shadow-sm",
+          ? "top-0 mx-auto max-w-4xl border bg-background/80 shadow-sm backdrop-blur-lg md:top-2 md:rounded-2xl"
+          : "mx-auto max-w-6xl bg-background shadow-sm md:rounded-2xl",
       )}
     >
       <div

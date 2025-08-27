@@ -180,7 +180,7 @@ export function TabsTrigger({
       tabIndex={isActive ? 0 : -1}
       disabled={disabled}
       className={cn(
-        "relative z-10 rounded-[12px] px-2 py-1 text-sm font-medium whitespace-nowrap transition-colors duration-200 focus:outline-none disabled:opacity-50 md:px-4 md:py-2",
+        "relative z-10 whitespace-nowrap rounded-[12px] px-2 py-1 text-sm font-medium transition-colors duration-200 focus:outline-none disabled:opacity-50 md:px-4 md:py-2",
         isActive
           ? "text-black dark:text-white"
           : "text-neutral-500 hover:text-black dark:hover:text-white",
@@ -264,11 +264,11 @@ export function TabsContent({
             scale: 0.98,
             transition: { duration: 0.2, ease: "easeInOut" },
           }}
-          className="w-full h-full p-1"
+          className="h-full w-full p-1"
         >
           <div
             className={cn(
-              "w-full h-full rounded-[8px] border bg-neutral-50 p-2 dark:bg-neutral-900",
+              "h-full w-full rounded-[8px] border bg-neutral-50 p-2 dark:bg-neutral-900",
               className,
             )}
           >
