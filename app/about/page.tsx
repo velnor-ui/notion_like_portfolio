@@ -24,9 +24,9 @@ import {
   IconExternalLink,
 } from "@tabler/icons-react";
 import ArrowButton from "@/components/ArrowButton";
-import PageSEO from "@/components/PageSEO";
 import SectionHeader from "@/components/SectionHeader";
 import Link from "next/link";
+import Container from "@/components/Container";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -74,26 +74,9 @@ export default function AboutPage() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
   return (
-    <>
-      <PageSEO
-        title="About | Developer Portfolio"
-        description="Learn more about me, my experience, and my skills."
-        ogImage="/og-image.png"
-        canonical="https://yourdomain.com/about"
-        twitterCard="summary_large_image"
-        twitterTitle="About | Developer Portfolio"
-        twitterDescription="Learn more about me, my experience, and my skills."
-        twitterImage="/og-image.png"
-      />
-      <main className="relative overflow-hidden py-8 md:py-16">
-        {/* Background Elements */}
-        <div className="fixed inset-0 -z-10">
-          <div className="absolute -right-1/4 top-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-neutral-100/40 to-transparent blur-3xl dark:from-neutral-800/20" />
-          <div className="absolute -left-1/4 bottom-1/4 h-96 w-96 rounded-full bg-gradient-to-tr from-neutral-100/30 to-transparent blur-3xl dark:from-neutral-800/10" />
-        </div>
+<Container className="py-20">
 
         <motion.div
-          className="container space-y-20 py-12"
           initial="hidden"
           animate="visible"
           variants={containerVariants}
@@ -205,7 +188,7 @@ export default function AboutPage() {
                   <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-neutral-200 via-transparent to-neutral-300 p-1 dark:from-neutral-700 dark:to-neutral-800">
                     <div className="relative h-full w-full overflow-hidden rounded-3xl bg-white dark:bg-neutral-900">
                       <Image
-                        src="/hero.jpeg"
+                        src="/tony.jpg"
                         alt="Profile photo of the developer"
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -248,11 +231,9 @@ export default function AboutPage() {
           {/* Tabs Section */}
           <motion.section variants={itemVariants}>
             <Tabs
+              defaultValue="experience"
               value={activeTab}
               onValueChange={setActiveTab}
-              className="w-full"
-              role="tablist"
-              aria-label="About page sections"
             >
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -260,7 +241,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <TabsList>
+                <TabsList className="w-fit">
                   {[
                     {
                       value: "experience",
@@ -290,7 +271,7 @@ export default function AboutPage() {
               </motion.div>
 
               {/* Experience Tab */}
-              <TabsContent value="experience" className="mt-4 md:mt-8" asChild>
+              <TabsContent value="experience">
                 <section aria-labelledby="experience-tab">
                   <div className="space-y-6">
                     {experiences.map((exp, index) => (
@@ -319,7 +300,7 @@ export default function AboutPage() {
               </TabsContent>
 
               {/* Education Tab */}
-              <TabsContent value="education" className="mt-8" asChild>
+              <TabsContent value="education">
                 <section aria-labelledby="education-tab">
                   <div className="space-y-6">
                     {education.map((edu, index) => (
@@ -347,7 +328,7 @@ export default function AboutPage() {
               </TabsContent>
 
               {/* Certifications Tab */}
-              <TabsContent value="certifications" className="mt-8" asChild>
+              <TabsContent value="certifications">
                 <section aria-labelledby="certifications-tab">
                   <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {certifications.map((cert, index) => (
@@ -409,7 +390,7 @@ export default function AboutPage() {
               </TabsContent>
 
               {/* Hobbies Tab */}
-              <TabsContent value="hobbies" className="mt-8" asChild>
+              <TabsContent value="hobbies">
                 <section aria-labelledby="hobbies-tab">
                   <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                     {hobbies.map((hobby, index) => (
@@ -461,7 +442,6 @@ export default function AboutPage() {
             </Tabs>
           </motion.section>
         </motion.div>
-      </main>
-    </>
+        </Container>
   );
 }

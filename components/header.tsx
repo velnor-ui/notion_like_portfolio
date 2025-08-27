@@ -39,8 +39,8 @@ export default function Header() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 px-4 transition-all duration-300 ease-in-out md:px-6",
         scrolled
-          ? "top-2 mx-auto max-w-4xl rounded-2xl border bg-background/60 shadow-sm backdrop-blur-md"
-          : "mx-auto max-w-6xl bg-background",
+          ? "top-0 md:top-2 mx-auto max-w-4xl md:rounded-2xl border bg-background/80 shadow-sm backdrop-blur-lg"
+          : "mx-auto max-w-6xl bg-background md:rounded-2xl shadow-sm",
       )}
     >
       <div
@@ -62,7 +62,7 @@ export default function Header() {
               <Link
                 href={item.path}
                 className={cn(
-                  "relative rounded-full px-3 py-1 text-sm font-medium transition-colors duration-200 hover:text-primary",
+                  "relative rounded-lg px-3 py-1 text-sm font-medium transition-colors duration-200 hover:text-primary",
                   pathname === item.path
                     ? "text-primary"
                     : "text-muted-foreground",
@@ -72,7 +72,7 @@ export default function Header() {
                 {hoveredItem === index && (
                   <motion.div
                     layoutId="nav-highlight"
-                    className="absolute inset-0 rounded-full bg-primary/10"
+                    className="absolute inset-0 rounded-lg bg-primary/10"
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   />
                 )}

@@ -7,7 +7,7 @@ const MotionDiv = ({
   children,
   className,
   ...props
-}: { children: React.ReactNode; className?: string } & MotionProps) => {
+}: { children?: React.ReactNode; className?: string } & MotionProps) => {
   return (
     <AnimatePresence>
       <motion.div {...props} className={cn(className)}>

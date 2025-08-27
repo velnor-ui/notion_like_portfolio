@@ -89,12 +89,8 @@ export default function Footer() {
       viewport={{ once: true, margin: "-100px" }}
       variants={containerVariants}
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
-        <div className="absolute inset-0 bg-gradient-to-br from-neutral-900 via-transparent to-neutral-900" />
-      </div>
 
-      <div className="container relative py-12 md:py-16">
+      <div className="mx-auto max-w-5xl px-2 sm:px-4 md:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-3 lg:gap-16">
           {/* Brand Section */}
           <motion.div variants={itemVariants} className="space-y-4">

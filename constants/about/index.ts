@@ -1,3 +1,5 @@
+// Update your Experience
+
 interface Experience {
   title: string;
   company: string;
@@ -48,6 +50,8 @@ export const experiences: Experience[] = [
   },
 ];
 
+// Update your Education
+
 interface Education {
   degree: string;
   institution: string;
@@ -85,7 +89,7 @@ export const education: Education[] = [
   },
 ];
 
-// Certifications data
+// Certifications data - Update your Certifications
 
 interface Certifications {
   name: string;
@@ -122,6 +126,9 @@ export const certifications: Certifications[] = [
   },
 ];
 
+
+// Update your Hobbies
+
 interface Hobbies {
   name: string;
   description: string;
@@ -129,12 +136,13 @@ interface Hobbies {
   icon: string;
   stats: string;
 }
+
 export const hobbies: Hobbies[] = [
   {
     name: "Photography",
     description:
       "Capturing moments and exploring visual storytelling through landscape and street photography.",
-    image: "/placeholder.svg?height=200&width=200",
+    image: "/camera.jpg",
     icon: "📸",
     stats: "500+ photos taken",
   },
@@ -142,7 +150,7 @@ export const hobbies: Hobbies[] = [
     name: "Hiking",
     description:
       "Exploring nature trails and challenging myself physically while disconnecting from technology.",
-    image: "/placeholder.svg?height=200&width=200",
+    image: "/hiking.jpg",
     icon: "🥾",
     stats: "25+ trails completed",
   },
@@ -150,7 +158,7 @@ export const hobbies: Hobbies[] = [
     name: "Reading",
     description:
       "Expanding knowledge through technical books, fiction, and staying current with industry trends.",
-    image: "/placeholder.svg?height=200&width=200",
+    image: "/books.jpeg",
     icon: "📚",
     stats: "50+ books annually",
   },
