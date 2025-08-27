@@ -64,7 +64,7 @@ const TestimonialCard = ({
       onHoverEnd={() => setIsHovered(false)}
     >
       <motion.div
-        className="relative rounded-lg border p-8 shadow-sm transition-all duration-300 hover:shadow-md"
+        className="relative rounded-lg border p-8 shadow-xs transition-all duration-300 hover:shadow-md"
         animate={{
           y: isHovered ? -2 : 0,
           boxShadow: isHovered

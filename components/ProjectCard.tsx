@@ -26,10 +26,10 @@ const ProjectCard = ({
       className="group mx-auto w-full max-w-md"
       key={project.id}
     >
-      <div className="group flex h-full flex-col overflow-hidden rounded-2xl border bg-white shadow-sm transition-all duration-300 hover:shadow-xl dark:border-neutral-800 dark:bg-black">
+      <div className="group flex h-full flex-col overflow-hidden rounded-2xl border bg-white shadow-xs transition-all duration-300 hover:shadow-xl dark:border-neutral-800 dark:bg-black">
         <Link
           href={`/projects/${project.id}`}
-          className="relative h-48 overflow-hidden bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-800 dark:to-neutral-900"
+          className="relative h-48 overflow-hidden bg-linear-to-br from-neutral-50 to-neutral-100 dark:from-neutral-800 dark:to-neutral-900"
         >
           <motion.div className="absolute inset-0 z-20 bg-primary/10 opacity-0 blur-md transition-all duration-300 ease-in-out group-hover:opacity-100" />
           {project.status && (

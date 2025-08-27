@@ -20,7 +20,7 @@ const SectionCard = ({
   isExperience?: boolean;
 }) => {
   return (
-    <Card className="group border-neutral-200 bg-white/80 text-xs backdrop-blur-sm hover:border-neutral-300 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900/80 dark:hover:border-neutral-700 md:text-sm">
+    <Card className="group border-neutral-200 bg-white/80 text-xs backdrop-blur-xs hover:border-neutral-300 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900/80 dark:hover:border-neutral-700 md:text-sm">
       <CardContent className="p-4 sm:p-8">
         <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
           <div className="flex-1 space-y-4">

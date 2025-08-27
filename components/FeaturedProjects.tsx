@@ -74,7 +74,7 @@ const FeaturedProjects = () => {
                 >
                   <div className="relative h-full w-full overflow-hidden bg-neutral-200 dark:bg-neutral-900">
                     <div
-                      className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                      className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/20 to-transparent"
                       style={{
                         animation: "shimmer 2s infinite",
                       }}
@@ -98,7 +98,7 @@ const FeaturedProjects = () => {
                 {/* Status & Featured Indicators */}
                 <div className="absolute left-4 top-4 flex items-center space-x-2">
                   <div
-                    className={`flex items-center rounded-lg border bg-primary-foreground/80 px-3 py-1 backdrop-blur-sm transition-all duration-300 ${
+                    className={`flex items-center rounded-lg border bg-primary-foreground/80 px-3 py-1 backdrop-blur-xs transition-all duration-300 ${
                       hoveredProject === project.id
                         ? "border-neutral-900 bg-white dark:bg-neutral-800"
                         : "border-neutral-200 dark:border-neutral-800"
@@ -134,7 +134,7 @@ const FeaturedProjects = () => {
 
                 {/* Hover Action Overlay */}
                 <div
-                  className={`absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm transition-all duration-500 ${
+                  className={`absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-xs transition-all duration-500 ${
                     hoveredProject === project.id
                       ? "opacity-100"
                       : "pointer-events-none opacity-0"
@@ -179,7 +179,7 @@ const FeaturedProjects = () => {
                     <motion.h3 className="text-xl font-bold transition-all duration-300">
                       {project.title}
                     </motion.h3>
-                    <div className="ml-4 flex items-center rounded-md bg-primary/10 px-2 py-1 text-sm text-neutral-500 backdrop-blur-sm">
+                    <div className="ml-4 flex items-center rounded-md bg-primary/10 px-2 py-1 text-sm text-neutral-500 backdrop-blur-xs">
                       <IconCalendar className="mr-1 h-3 w-3" />
                       {project.year}
                     </div>

@@ -28,7 +28,7 @@ const CustomSelect = ({
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full rounded-lg border px-4 py-2 text-left transition-all duration-200 hover:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-10 md:w-48"
+        className="w-full rounded-lg border px-4 py-2 text-left transition-all duration-200 hover:border-neutral-300 focus:outline-hidden focus:ring-2 focus:ring-black focus:ring-opacity-10 md:w-48"
       >
         <div className="flex items-center justify-between">
           <span className={value === "All" ? "text-neutral-500" : "text-black"}>
@@ -93,7 +93,7 @@ export default function ProjectsPage() {
           <input
             type="text"
             placeholder="Search projects, technologies, or descriptions..."
-            className="w-full rounded-xl border py-3 pl-12 pr-4 placeholder-neutral-400 transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-10"
+            className="w-full rounded-xl border py-3 pl-12 pr-4 placeholder-neutral-400 transition-all duration-200 focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-opacity-10"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />

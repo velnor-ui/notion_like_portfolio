@@ -184,7 +184,7 @@ export default function AboutPage() {
                 whileHover={{ scale: 1.02, rotate: 1 }}
               >
                 {/* Decorative border */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-neutral-200 via-transparent to-neutral-300 p-1 dark:from-neutral-700 dark:to-neutral-800">
+                <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-neutral-200 via-transparent to-neutral-300 p-1 dark:from-neutral-700 dark:to-neutral-800">
                   <div className="relative h-full w-full overflow-hidden rounded-3xl bg-white dark:bg-neutral-900">
                     <Image
                       src="/tony.jpg"
@@ -193,7 +193,7 @@ export default function AboutPage() {
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   </div>
                 </div>
 
@@ -340,15 +340,15 @@ export default function AboutPage() {
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                       viewport={{ once: true }}
                     >
-                      <Card className="group relative overflow-hidden border-neutral-200 bg-white/80 backdrop-blur-sm hover:border-neutral-300 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900/80 dark:hover:border-neutral-700">
+                      <Card className="group relative overflow-hidden border-neutral-200 bg-white/80 backdrop-blur-xs hover:border-neutral-300 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900/80 dark:hover:border-neutral-700">
                         {/* Gradient background */}
                         <div
-                          className={`absolute inset-0 bg-gradient-to-br ${cert.color} opacity-5 transition-opacity group-hover:opacity-10`}
+                          className={`absolute inset-0 bg-linear-to-br ${cert.color} opacity-5 transition-opacity group-hover:opacity-10`}
                         />
 
                         <CardContent className="relative flex flex-col items-center p-8 text-center">
                           <motion.div
-                            className="mb-6 rounded-full bg-gradient-to-br from-neutral-100 to-neutral-200 p-4 dark:from-neutral-700 dark:to-neutral-800"
+                            className="mb-6 rounded-full bg-linear-to-br from-neutral-100 to-neutral-200 p-4 dark:from-neutral-700 dark:to-neutral-800"
                             whileHover={{ rotate: 10, scale: 1.1 }}
                             transition={{ duration: 0.3 }}
                           >
@@ -402,7 +402,7 @@ export default function AboutPage() {
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                       viewport={{ once: true }}
                     >
-                      <Card className="group overflow-hidden border-neutral-200 bg-white/80 backdrop-blur-sm hover:border-neutral-300 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900/80 dark:hover:border-neutral-700">
+                      <Card className="group overflow-hidden border-neutral-200 bg-white/80 backdrop-blur-xs hover:border-neutral-300 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900/80 dark:hover:border-neutral-700">
                         <div className="relative h-48 w-full overflow-hidden">
                           <Image
                             src={hobby.image || "/placeholder.svg"}
@@ -411,15 +411,15 @@ export default function AboutPage() {
                             className="object-cover transition-transform duration-700 group-hover:scale-110"
                             loading="lazy"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                          <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
 
                           {/* Floating emoji */}
-                          <div className="absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-2xl backdrop-blur-sm dark:bg-neutral-900/90">
+                          <div className="absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-2xl backdrop-blur-xs dark:bg-neutral-900/90">
                             {hobby.icon}
                           </div>
 
                           {/* Stats badge */}
-                          <div className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-medium backdrop-blur-sm dark:bg-neutral-900/90">
+                          <div className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-medium backdrop-blur-xs dark:bg-neutral-900/90">
                             {hobby.stats}
                           </div>
                         </div>

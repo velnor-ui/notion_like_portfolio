@@ -99,7 +99,7 @@ export default function Footer() {
               showcase of innovation and creativity.
             </p>
             <motion.div
-              className="h-px w-16 bg-gradient-to-r from-neutral-900 to-transparent dark:from-neutral-100"
+              className="h-px w-16 bg-linear-to-r from-neutral-900 to-transparent dark:from-neutral-100"
               initial={{ width: 0 }}
               whileInView={{ width: 64 }}
               transition={{ duration: 0.8, delay: 0.5 }}
@@ -202,7 +202,7 @@ export default function Footer() {
       {/* Scroll to Top Button */}
       <motion.button
         onClick={scrollToTop}
-        className="fixed bottom-6 right-6 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-white/90 text-neutral-600 shadow-lg backdrop-blur-sm transition-all duration-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white dark:border-neutral-800 dark:bg-neutral-900/90 dark:text-neutral-400 dark:hover:border-neutral-100 dark:hover:bg-neutral-100 dark:hover:text-neutral-900"
+        className="fixed bottom-6 right-6 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-white/90 text-neutral-600 shadow-lg backdrop-blur-xs transition-all duration-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white dark:border-neutral-800 dark:bg-neutral-900/90 dark:text-neutral-400 dark:hover:border-neutral-100 dark:hover:bg-neutral-100 dark:hover:text-neutral-900"
         initial={{ opacity: 0, y: 20 }}
         animate={{
           opacity: showScrollTop ? 1 : 0,

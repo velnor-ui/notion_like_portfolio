@@ -12,9 +12,9 @@ const ContactMethods = () => {
           <a
             key={index}
             href={method.href}
-            className={`flex items-center rounded-lg border p-4 transition-all duration-200 hover:border-neutral-300 hover:shadow-sm`}
+            className={`flex items-center rounded-lg border p-4 transition-all duration-200 hover:border-neutral-300 hover:shadow-xs`}
           >
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               <method.icon className={`h-5 w-5 ${method.color}`} />
             </div>
             <div className="ml-3">

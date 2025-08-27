@@ -109,7 +109,7 @@ const ContactForm = () => {
     const isFocused = focusedField === field;
 
     const base =
-      "w-full rounded-lg border py-3 px-4 pl-10 transition-all duration-200 focus:outline-none focus:ring-2 hover:border-neutral-400 dark:bg-neutral-900 dark:text-white";
+      "w-full rounded-lg border py-3 px-4 pl-10 transition-all duration-200 focus:outline-hidden focus:ring-2 hover:border-neutral-400 dark:bg-neutral-900 dark:text-white";
     if (status === "error")
       return `${base} border-red-300 bg-red-50 focus:ring-red-500 dark:border-red-500/60 dark:bg-red-900/20`;
     if (status === "success" && !isFocused)
@@ -357,7 +357,7 @@ const ContactForm = () => {
           <button
             onClick={handleSubmit}
             disabled={isSubmitting || !isFormValid()}
-            className={`flex w-full items-center justify-center rounded-lg px-6 py-3 font-medium text-primary-foreground transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+            className={`flex w-full items-center justify-center rounded-lg px-6 py-3 font-medium text-primary-foreground transition-all duration-200 focus:outline-hidden focus:ring-2 focus:ring-offset-2 ${
               isSubmitting || !isFormValid()
                 ? "cursor-not-allowed bg-primary/50"
                 : "focus:ring-primary-500 dark:bg-primary-500 dark:hover:bg-primary-600 bg-primary hover:bg-primary/90"

@@ -11,7 +11,7 @@ const ArrowButton = ({
   children: React.ReactNode;
   link: string;
   className?: string;
-  variant?: "default" | "outline" | "ghost";
+  variant?: "default" | "outline-solid" | "ghost";
 }) => {
   const buttonVariants: Record<string, string> = {
     default: "bg-primary text-secondary border rounded-lg",

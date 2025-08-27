@@ -96,7 +96,7 @@ export default function ProjectDetailPage() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-            className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-900"
+            className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-linear-to-br from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-900"
           >
             <XCircle className="h-10 w-10 text-neutral-400 dark:text-neutral-600" />
           </motion.div>
@@ -218,13 +218,13 @@ export default function ProjectDetailPage() {
                         className="overflow-hidden rounded-2xl object-cover"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                      <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent" />
                     </motion.div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="left-4 border-neutral-200 bg-white/90 backdrop-blur-sm hover:bg-white dark:border-neutral-800 dark:bg-neutral-900/90 dark:hover:bg-neutral-900" />
-              <CarouselNext className="right-4 border-neutral-200 bg-white/90 backdrop-blur-sm hover:bg-white dark:border-neutral-800 dark:bg-neutral-900/90 dark:hover:bg-neutral-900" />
+              <CarouselPrevious className="left-4 border-neutral-200 bg-white/90 backdrop-blur-xs hover:bg-white dark:border-neutral-800 dark:bg-neutral-900/90 dark:hover:bg-neutral-900" />
+              <CarouselNext className="right-4 border-neutral-200 bg-white/90 backdrop-blur-xs hover:bg-white dark:border-neutral-800 dark:bg-neutral-900/90 dark:hover:bg-neutral-900" />
             </Carousel>
           </motion.div>
         </motion.section>
@@ -286,7 +286,7 @@ export default function ProjectDetailPage() {
                               transition={{ duration: 0.4, delay: index * 0.1 }}
                               viewport={{ once: true }}
                             >
-                              <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-400" />
+                              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-red-400" />
                               <span className="leading-relaxed">
                                 {challenge}
                               </span>
@@ -319,7 +319,7 @@ export default function ProjectDetailPage() {
                               transition={{ duration: 0.4, delay: index * 0.1 }}
                               viewport={{ once: true }}
                             >
-                              <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-green-400" />
+                              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-green-400" />
                               <span className="leading-relaxed">
                                 {solution}
                               </span>
@@ -344,7 +344,7 @@ export default function ProjectDetailPage() {
                 className="sticky top-8"
               >
                 <motion.div
-                  className="rounded-2xl border border-neutral-200 bg-white/80 p-4 backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-900/80 md:p-6"
+                  className="rounded-2xl border border-neutral-200 bg-white/80 p-4 backdrop-blur-xs dark:border-neutral-800 dark:bg-neutral-900/80 md:p-6"
                   whileHover={{ scale: 1.02, y: -4 }}
                   transition={{ duration: 0.3 }}
                 >

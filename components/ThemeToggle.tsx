@@ -13,7 +13,7 @@ const ThemeToggle = ({ mounted }: { mounted: boolean }) => {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="group relative rounded-xl border border-neutral-200/50 bg-neutral-100/70 p-2.5 backdrop-blur-sm transition-all duration-200 hover:bg-neutral-200/70 dark:border-neutral-700/50 dark:bg-neutral-800/70 dark:hover:bg-neutral-700/70"
+      className="group relative rounded-xl border border-neutral-200/50 bg-neutral-100/70 p-2.5 backdrop-blur-xs transition-all duration-200 hover:bg-neutral-200/70 dark:border-neutral-700/50 dark:bg-neutral-800/70 dark:hover:bg-neutral-700/70"
       aria-label="Toggle theme"
     >
       <AnimatePresence mode="wait">
