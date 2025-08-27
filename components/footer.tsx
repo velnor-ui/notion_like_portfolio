@@ -185,7 +185,7 @@ export default function Footer() {
           className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-neutral-200 pt-8 text-center dark:border-neutral-800 md:flex-row md:text-left"
         >
           <p className="text-xs text-neutral-500 dark:text-neutral-500">
-            © {new Date().getFullYear()} Your Name. All rights reserved.
+            © {new Date().getFullYear()} Sanjid. All rights reserved.
           </p>
 
           <motion.p
@@ -194,7 +194,7 @@ export default function Footer() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.5 }}
           >
-            Made with ❤️ and lots of ☕
+            Made with ❤️ and lots of ☕ by <a href="https://sanjid.in">Sanjid</a>
           </motion.p>
         </motion.div>
       </div>
