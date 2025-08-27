@@ -87,7 +87,7 @@ export default function ProjectsPage() {
       {/* Filters */}
       <div className="mb-12 flex flex-col gap-4 md:flex-row">
         <div className="relative flex-1">
-          <div className="absolute top-1/2 left-4 -translate-y-1/2 transform text-neutral-400">
+          <div className="text-muted-foreground absolute top-1/2 left-4 -translate-y-1/2 transform">
             <IconSearch />
           </div>
           <input
@@ -123,7 +123,7 @@ export default function ProjectsPage() {
           <p className="text-lg text-neutral-500">
             No projects found matching your criteria.
           </p>
-          <p className="mt-2 text-sm text-neutral-400">
+          <p className="text-muted-foreground mt-2 text-sm">
             Try adjusting your search or filter options.
           </p>
         </motion.div>

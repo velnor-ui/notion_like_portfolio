@@ -60,17 +60,21 @@ const FeaturedProjects = () => {
             onMouseLeave={() => setHoveredProject(null)}
           >
             <div
-              className={`h-full overflow-hidden rounded-2xl border border-neutral-200 bg-white transition-all duration-500 hover:shadow-2xl hover:shadow-neutral-900/10 dark:border-neutral-800 dark:bg-neutral-950 ${
+              className={`h-full overflow-hidden rounded-2xl border bg-white transition-all duration-500 hover:shadow-2xl hover:shadow-neutral-900/10 dark:bg-neutral-950 ${
                 hoveredProject === project.id
                   ? "-translate-y-2 transform border-neutral-400 dark:border-neutral-600"
                   : "hover:border-neutral-400"
               }`}
             >
               {/* Project Image */}
-              <div className="relative h-56 overflow-hidden bg-neutral-100 dark:bg-neutral-800">
+              <div
+                className="relative h-56 overflow-hidden bg-neutral-100 dark:bg-neutral-800"
+                aria-hidden={!imageLoaded[project.id]}
+              >
                 {/* Loading Skeleton */}
                 <div
                   className={`absolute inset-0 ${imageLoaded[project.id] ? "hidden" : "block"}`}
+                  aria-hidden="true"
                 >
                   <div className="relative h-full w-full overflow-hidden bg-neutral-200 dark:bg-neutral-900">
                     <div
@@ -148,6 +152,7 @@ const FeaturedProjects = () => {
                     >
                       <Link
                         href={project?.githubUrl ?? ""}
+                        aria-label="View Source Code"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -161,6 +166,7 @@ const FeaturedProjects = () => {
                     >
                       <Link
                         href={project?.liveUrl ?? ""}
+                        aria-label="View Live Demo"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -172,28 +178,31 @@ const FeaturedProjects = () => {
               </div>
 
               {/* Project Content */}
-              <Link href={`/projects/${project.id}`}>
+              <Link
+                aria-label="View Project"
+                href={`/projects/${project.slug}`}
+              >
                 <div className="h-full p-4">
                   {/* Header with Year */}
                   <div className="mb-4 flex items-start justify-between">
                     <motion.h3 className="text-xl font-bold transition-all duration-300">
                       {project.title}
                     </motion.h3>
-                    <div className="bg-primary/10 ml-4 flex items-center rounded-md px-2 py-1 text-sm text-neutral-500 backdrop-blur-xs">
+                    <div className="bg-primary/10 ml-4 flex items-center rounded-md px-2 py-1 text-sm text-neutral-700 backdrop-blur-xs dark:text-neutral-300">
                       <IconCalendar className="mr-1 h-3 w-3" />
                       {project.year}
                     </div>
                   </div>
 
                   {/* Description */}
-                  <p className="mb-6 line-clamp-3 text-sm leading-relaxed text-neutral-600">
+                  <p className="mb-6 line-clamp-3 text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
                     {project.description}
                   </p>
 
                   {/* Tech Stack */}
                   <Tags tags={project.tags} />
                   {/* Stats & Action */}
-                  <div className="mt-2 flex items-center justify-end border-t border-neutral-100 p-2 dark:border-neutral-800">
+                  <div className="mt-4 flex items-center justify-end border-t border-neutral-100 p-2 dark:border-neutral-800">
                     View Details
                     <IconArrowRight className="ml-2 h-4 w-4 transition-all duration-300 ease-in-out group-hover:translate-x-1" />
                   </div>
@@ -206,28 +215,32 @@ const FeaturedProjects = () => {
 
       {/* View All Projects Button */}
       <div className="mb-20 flex items-center justify-center">
-        <ArrowButton link="/projects">View All Projects</ArrowButton>
+        <ArrowButton variant="secondary" link="/projects">
+          View All Projects
+        </ArrowButton>
       </div>
 
       {/* CTA Section */}
       <motion.div
-        className="rounded-2xl border border-neutral-200 bg-neutral-100 p-12 text-center dark:border-neutral-900 dark:bg-neutral-950"
+        className="rounded-2xl border p-12 text-center"
         style={{
           animation: "fadeInUp 0.6s ease-out 0.6s both",
         }}
       >
         <div className="mx-auto max-w-2xl">
-          <h3 className="mb-4 font-bold text-neutral-900 md:text-2xl dark:text-neutral-100">
+          <h3 className="mb-4 font-bold md:text-2xl">
             Ready to start your project?
           </h3>
-          <p className="mb-8 text-sm leading-relaxed text-neutral-600 md:text-base dark:text-neutral-400">
+          <p className="text-muted-foreground mb-8 text-sm leading-relaxed md:text-base">
             I&apos;m always excited to collaborate on innovative projects and
             bring creative ideas to life. Let&apos;s discuss how we can work
             together to create something exceptional.
           </p>
           <div className="flex w-full flex-col justify-center gap-4 sm:flex-row">
             <ArrowButton link="/contact">Start a Project</ArrowButton>
-            <ArrowButton link="/contact">View Resume</ArrowButton>
+            <ArrowButton variant="secondary" link="/contact">
+              View Resume
+            </ArrowButton>
           </div>
         </div>
       </motion.div>

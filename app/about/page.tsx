@@ -100,7 +100,7 @@ export default function AboutPage() {
                 className="space-y-6 text-sm md:text-base"
               >
                 <motion.p
-                  className="leading-relaxed text-neutral-600 dark:text-neutral-400"
+                  className="text-muted-foreground leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.5 }}
@@ -113,7 +113,7 @@ export default function AboutPage() {
                 </motion.p>
 
                 <motion.p
-                  className="leading-relaxed text-neutral-600 dark:text-neutral-400"
+                  className="text-muted-foreground leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
@@ -145,10 +145,8 @@ export default function AboutPage() {
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">
-                      {stat.number}
-                    </div>
-                    <div className="text-xs text-neutral-600 md:text-sm dark:text-neutral-400">
+                    <div className="text-2xl font-bold">{stat.number}</div>
+                    <div className="text-muted-foreground text-xs md:text-sm">
                       {stat.label}
                     </div>
                   </motion.div>
@@ -187,7 +185,7 @@ export default function AboutPage() {
                 <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-neutral-200 via-transparent to-neutral-300 p-1 dark:from-neutral-700 dark:to-neutral-800">
                   <div className="relative h-full w-full overflow-hidden rounded-3xl bg-white dark:bg-neutral-900">
                     <Image
-                      src="/tony.jpg"
+                      src="/tony2.webp"
                       alt="Profile photo of the developer"
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -207,7 +205,7 @@ export default function AboutPage() {
                     ease: "easeInOut",
                   }}
                 >
-                  <IconCode className="h-6 w-6 text-neutral-700 dark:text-neutral-300" />
+                  <IconCode className="text-muted-foreground h-6 w-6" />
                 </motion.div>
 
                 <motion.div
@@ -220,7 +218,7 @@ export default function AboutPage() {
                     delay: 1.5,
                   }}
                 >
-                  <IconCoffee className="h-6 w-6 text-neutral-700 dark:text-neutral-300" />
+                  <IconCoffee className="text-muted-foreground h-6 w-6" />
                 </motion.div>
               </motion.div>
             </motion.div>
@@ -352,7 +350,7 @@ export default function AboutPage() {
                             whileHover={{ rotate: 10, scale: 1.1 }}
                             transition={{ duration: 0.3 }}
                           >
-                            <IconAward className="h-8 w-8 text-neutral-700 dark:text-neutral-300" />
+                            <IconAward className="text-muted-foreground h-8 w-8" />
                           </motion.div>
 
                           <h3 className="mb-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-neutral-700 md:text-xl dark:text-neutral-100 dark:group-hover:text-neutral-300">

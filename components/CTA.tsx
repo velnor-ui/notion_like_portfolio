@@ -10,7 +10,7 @@ const CTA = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex w-full flex-col items-center justify-center space-y-6 rounded-xl border bg-neutral-100 p-8 text-center md:p-12 dark:bg-neutral-950"
+        className="flex w-full flex-col items-center justify-center space-y-6 rounded-xl border p-8 text-center md:p-12"
       >
         <h2 className="text-3xl font-bold">Interested in working together?</h2>
         <p className="text-muted-foreground mx-auto max-w-2xl">

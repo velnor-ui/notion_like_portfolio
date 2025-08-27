@@ -94,9 +94,9 @@ const TestimonialCard = ({
           </motion.div>
 
           <div className="flex-1">
-            <motion.h4 className="text-base font-medium">
+            <motion.p className="text-base font-medium">
               {testimonial.name}
-            </motion.h4>
+            </motion.p>
             <motion.p className="text-sm text-neutral-500">
               {testimonial.position}
             </motion.p>
@@ -183,6 +183,7 @@ const Testimonials = () => {
         {/* Previous button */}
         <motion.button
           onClick={() => paginate(-1)}
+          aria-label="Previous"
           className="rounded-md border p-2 text-neutral-400 transition-all duration-200 hover:border-neutral-300 hover:text-neutral-600"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -207,6 +208,7 @@ const Testimonials = () => {
           {TESTIMONIALS.map((_, index) => (
             <motion.button
               key={index}
+              aria-label={`Slide ${index + 1}`}
               onClick={() => goToSlide(index)}
               className={`h-2 w-2 rounded-full transition-all duration-300 ${
                 index === currentIndex
@@ -225,6 +227,7 @@ const Testimonials = () => {
         {/* Next button */}
         <motion.button
           onClick={() => paginate(1)}
+          aria-label="Next"
           className="rounded-md border p-2 text-neutral-400 transition-all duration-200 hover:border-neutral-300 hover:text-neutral-600"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -249,6 +252,7 @@ const Testimonials = () => {
       <div className="mt-6 flex justify-center">
         <motion.button
           onClick={toggleAutoplay}
+          aria-label="Toggle Autoplay"
           className="flex items-center gap-2 rounded-md border px-4 py-2 text-sm text-neutral-600 transition-all duration-200 hover:border-neutral-300 hover:text-neutral-800"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}

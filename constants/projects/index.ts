@@ -8,6 +8,7 @@ interface Project {
   year: string;
   githubUrl?: string;
   liveUrl?: string;
+  slug: string;
   featured?: boolean;
 }
 
@@ -23,6 +24,7 @@ export const featuredProjects: Project[] = [
     year: "2024",
     githubUrl: "https://github.com/username/ecommerce",
     liveUrl: "https://ecommerce-demo.com",
+    slug: "e-commerce-platform",
     featured: true,
   },
   {
@@ -36,6 +38,7 @@ export const featuredProjects: Project[] = [
     year: "2024",
     githubUrl: "https://github.com/username/taskapp",
     liveUrl: "https://taskapp-demo.com",
+    slug: "task-management-app",
     featured: true,
   },
   {
@@ -49,6 +52,7 @@ export const featuredProjects: Project[] = [
     year: "2023",
     githubUrl: "https://github.com/username/blog-platform",
     liveUrl: "https://blog-platform-demo.com",
+    slug: "blog-platform",
     featured: true,
   },
 ];

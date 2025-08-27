@@ -86,6 +86,7 @@ export default function ProjectDetailPage() {
   if (!project) {
     return (
       <motion.div
+        ref={containerRef}
         className="container flex min-h-[60vh] items-center justify-center"
         initial="hidden"
         animate="visible"
@@ -98,24 +99,19 @@ export default function ProjectDetailPage() {
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
             className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-linear-to-br from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-900"
           >
-            <XCircle className="h-10 w-10 text-neutral-400 dark:text-neutral-600" />
+            <XCircle className="text-muted-foreground h-10 w-10" />
           </motion.div>
 
           <div className="space-y-2">
-            <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
-              Project Not Found
-            </h1>
-            <p className="max-w-md text-neutral-600 dark:text-neutral-400">
+            <h1 className="text-3xl font-bold">Project Not Found</h1>
+            <p className="text-muted-foreground max-w-md">
               The project you&apos;re looking for doesn&apos;t exist or has been
               moved to a different location.
             </p>
           </div>
 
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <Button
-              asChild
-              className="bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-200"
-            >
+            <Button asChild>
               <Link href="/projects">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Projects
@@ -141,7 +137,7 @@ export default function ProjectDetailPage() {
             <Button
               variant="ghost"
               asChild
-              className="group -ml-4 text-xs text-neutral-600 hover:text-neutral-900 md:text-sm dark:text-neutral-400 dark:hover:text-neutral-100"
+              className="group -ml-4 text-xs md:text-sm"
             >
               <Link href="/projects">
                 <motion.div
@@ -172,7 +168,7 @@ export default function ProjectDetailPage() {
 
             {/* Meta Information */}
             <motion.div
-              className="flex flex-wrap items-center gap-2 text-[10px] text-neutral-500 md:gap-6 md:text-xs lg:text-sm dark:text-neutral-500"
+              className="text-muted-foreground flex flex-wrap items-center gap-2 text-[10px] md:gap-6 md:text-xs lg:text-sm"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}

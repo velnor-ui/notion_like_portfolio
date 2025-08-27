@@ -44,6 +44,8 @@ export default function AboutLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-neutral-50 py-20 lg:py-24 dark:bg-neutral-900">{children}</div>
+    <div className="bg-neutral-50 py-20 lg:py-24 dark:bg-neutral-900">
+      {children}
+    </div>
   );
 }

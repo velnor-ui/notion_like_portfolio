@@ -38,7 +38,7 @@ const Hero = () => {
           <div className="flex flex-wrap gap-4">
             <ArrowButton link="/contact">Get in Touch</ArrowButton>
             {/* Change it to your resume link */}
-            <ArrowButton link="#" variant="outline-solid">
+            <ArrowButton link="#" variant="secondary">
               <Download className="mr-2 h-4 w-4" /> Download Resume
             </ArrowButton>
           </div>
@@ -49,12 +49,11 @@ const Hero = () => {
           className="border-muted relative mx-auto aspect-square max-w-md overflow-hidden rounded-3xl border-8"
         >
           <Image
-            src="/tony.png"
+            src="/tony.webp"
             alt="Portrait of Your Name, Full Stack Developer"
             width={400}
             height={400}
             className="object-cover"
-            loading="lazy"
           />
         </Link>
       </div>

@@ -1,12 +1,15 @@
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+
 let userConfig = undefined;
 try {
-  userConfig = await import("./v0-user-next.config");
+  userConfig = (await import("./v0-user-next.config.js")).default;
 } catch (e) {
   // ignore error
 }
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+let nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -23,13 +26,14 @@ const nextConfig = {
   },
 };
 
-mergeConfig(nextConfig, userConfig);
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
 
-function mergeConfig(nextConfig, userConfig) {
-  if (!userConfig) {
-    return;
-  }
+nextConfig = withBundleAnalyzer(nextConfig);
 
+// Merge user config
+if (userConfig) {
   for (const key in userConfig) {
     if (
       typeof nextConfig[key] === "object" &&
