@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: "Developer Portfolio",
     description: "A Notion-themed developer portfolio",
     url: DOMAIN,
-    siteName: "Developer Portfolio",
+    siteName: DOMAIN,
     images: [
       {
         url: "/og-image.png",
@@ -70,20 +70,21 @@ export default function RootLayout({
         <link rel="canonical" href={DOMAIN} />
         <link rel="icon" href="/favicon.ico" />
         <meta name="robots" content="index, follow" />
+        <meta property="og:site_name" content={DOMAIN} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Your Name",
-              url: DOMAIN,
+              name: "Sanjid",
+              url: "https://sanjid.in",
               sameAs: [
-                "https://github.com/yourusername",
-                "https://linkedin.com/in/yourusername",
+                "https://github.com/m-sanjid",
+                "https://linkedin.com/in/muhammedsanjid1",
               ],
               jobTitle: "Frontend Developer",
-              image: `${DOMAIN}/your-photo.jpg`,
+              image: "https://sanjid.in/your-photo.jpg",
             }),
           }}
         />
