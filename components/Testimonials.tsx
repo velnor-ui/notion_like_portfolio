@@ -74,7 +74,7 @@ const TestimonialCard = ({
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
       >
         {/* Quote */}
-        <motion.p className="mb-8 text-lg font-normal leading-relaxed text-neutral-700 dark:text-neutral-400">
+        <motion.p className="mb-8 text-lg leading-relaxed font-normal text-neutral-700 dark:text-neutral-400">
           &quot;{testimonial.testimonial}&quot;
         </motion.p>
 
@@ -90,7 +90,7 @@ const TestimonialCard = ({
                 {testimonial.avatar}
               </span>
             </div>
-            <motion.div className="absolute -bottom-0.5 -right-0.5 h-4 w-4 rounded-full border-2 border-white bg-green-500" />
+            <motion.div className="absolute -right-0.5 -bottom-0.5 h-4 w-4 rounded-full border-2 border-white bg-green-500" />
           </motion.div>
 
           <div className="flex-1">

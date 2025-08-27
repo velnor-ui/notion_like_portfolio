@@ -32,7 +32,7 @@ const SectionHeader = ({
         </div>
       )}
       <h2 className="mb-4 text-2xl font-semibold md:text-3xl">{title}</h2>
-      <p className="max-w-2xl text-sm leading-relaxed text-neutral-600 dark:text-neutral-400 md:text-base">
+      <p className="max-w-2xl text-sm leading-relaxed text-neutral-600 md:text-base dark:text-neutral-400">
         {description}
       </p>
     </motion.div>

@@ -1,0 +1,234 @@
+---
+title: "Mastering TypeScript: Advanced Types and Patterns"
+description: "Dive deep into TypeScript's advanced type system and learn patterns that will make your code more robust and type-safe."
+date: "2024-01-01"
+readTime: "15 min read"
+image: "/blog_typescript.webp"
+slug: "typescript-advanced-patterns"
+tags: ["TypeScript", "Programming", "Best Practices"]
+---
+
+_Published on January 1, 2024 • 15 min read_
+
+TypeScript has become an essential tool for modern JavaScript development, providing static typing and powerful features that help catch errors early and make code more maintainable. In this post, we'll explore advanced TypeScript patterns that can elevate your code quality.
+
+## Beyond the Basics
+
+If you're familiar with TypeScript's basic types like `string`, `number`, and `boolean`, it's time to dive deeper into its more powerful type system features.
+
+## Advanced Types
+
+### Discriminated Unions
+
+Discriminated unions are a pattern where you use a common property to differentiate between different types:
+
+```tsx
+type Success = {
+  status: "success";
+  data: any;
+};
+
+type Error = {
+  status: "error";
+  error: string;
+};
+
+type Response = Success | Error;
+
+function handleResponse(response: Response) {
+  if (response.status === "success") {
+    // TypeScript knows response is Success type here
+    console.log(response.data);
+  } else {
+    // TypeScript knows response is Error type here
+    console.log(response.error);
+  }
+}
+```
+
+### Mapped Types
+
+Mapped types allow you to create new types based on existing ones:
+
+```tsx
+type User = {
+  id: number;
+  name: string;
+  email: string;
+};
+
+// Make all properties optional
+type PartialUser = {
+  [K in keyof User]?: User[K];
+};
+
+// Make all properties readonly
+type ReadonlyUser = {
+  readonly [K in keyof User]: User[K];
+};
+```
+
+### Conditional Types
+
+Conditional types let you create types that depend on conditions:
+
+```tsx
+type IsString<T> = T extends string ? true : false;
+
+// Usage
+type A = IsString<string>; // true
+type B = IsString<number>; // false
+```
+
+## Utility Types
+
+TypeScript provides several built-in utility types that make working with types easier:
+
+### Partial and Required
+
+```tsx
+interface User {
+  id: number;
+  name: string;
+  email?: string;
+}
+
+// All properties optional
+const partialUser: Partial<User> = { name: "John" };
+
+// All properties required (even optional ones)
+const requiredUser: Required<User> = {
+  id: 1,
+  name: "John",
+  email: "john@example.com", // Now required
+};
+```
+
+### Pick and Omit
+
+```tsx
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+}
+
+// Only include specified properties
+type PublicUser = Pick<User, "id" | "name" | "email">;
+
+// Exclude specified properties
+type UserWithoutSensitiveInfo = Omit<User, "password">;
+```
+
+## Advanced Patterns
+
+### Type Guards
+
+Type guards help narrow down types within conditional blocks:
+
+```tsx
+function isString(value: unknown): value is string {
+  return typeof value === "string";
+}
+
+function processValue(value: unknown) {
+  if (isString(value)) {
+    // TypeScript knows value is a string here
+    return value.toUpperCase();
+  }
+  return String(value);
+}
+```
+
+### Generic Constraints
+
+You can constrain generics to ensure they have specific properties:
+
+```tsx
+interface HasId {
+  id: number;
+}
+
+function getEntityById<T extends HasId>(
+  entities: T[],
+  id: number,
+): T | undefined {
+  return entities.find((entity) => entity.id === id);
+}
+
+// Usage
+const users = [
+  { id: 1, name: "John" },
+  { id: 2, name: "Jane" },
+];
+const user = getEntityById(users, 1); // Works because users have id property
+```
+
+## Practical Applications
+
+### State Management with Discriminated Unions
+
+```tsx
+type State =
+  | { status: "idle" }
+  | { status: "loading" }
+  | { status: "success"; data: any }
+  | { status: "error"; error: string };
+
+function renderUI(state: State) {
+  switch (state.status) {
+    case "idle":
+      return <Idle />;
+    case "loading":
+      return <Loading />;
+    case "success":
+      return <Success data={state.data} />;
+    case "error":
+      return <Error message={state.error} />;
+  }
+}
+```
+
+### Builder Pattern with Method Chaining
+
+```tsx
+class QueryBuilder<T> {
+  private filters: Record<string, any> = {};
+
+  where<K extends keyof T>(key: K, value: T[K]): this {
+    this.filters[key as string] = value;
+    return this;
+  }
+
+  orderBy<K extends keyof T>(key: K, direction: "asc" | "desc" = "asc"): this {
+    // Implementation
+    return this;
+  }
+
+  build(): string {
+    // Convert filters to query string
+    return JSON.stringify(this.filters);
+  }
+}
+
+// Usage
+interface User {
+  id: number;
+  name: string;
+  age: number;
+}
+
+const query = new QueryBuilder<User>()
+  .where("age", 30)
+  .orderBy("name", "asc")
+  .build();
+```
+
+## Conclusion
+
+Mastering TypeScript's advanced types and patterns can significantly improve your code quality and developer experience. By leveraging these powerful features, you can create more robust, maintainable, and self-documenting code.
+
+Remember that the goal of using these advanced patterns is not to make your code more complex, but rather to make it more predictable and safer. Always strive for the right balance between type safety and readability.
+
+As you continue your TypeScript journey, keep exploring these patterns and find ways to apply them to your specific use cases.

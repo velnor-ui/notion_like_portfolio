@@ -182,7 +182,7 @@ export default function Footer() {
         {/* Bottom Section */}
         <motion.div
           variants={itemVariants}
-          className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-neutral-200 pt-8 text-center dark:border-neutral-800 md:flex-row md:text-left"
+          className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-neutral-200 pt-8 text-center md:flex-row md:text-left dark:border-neutral-800"
         >
           <p className="text-xs text-neutral-500 dark:text-neutral-500">
             © {new Date().getFullYear()} Sanjid. All rights reserved.
@@ -194,7 +194,8 @@ export default function Footer() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.5 }}
           >
-            Made with ❤️ and lots of ☕ by <a href="https://sanjid.in">Sanjid</a>
+            Made with ❤️ and lots of ☕ by{" "}
+            <a href="https://sanjid.in">Sanjid</a>
           </motion.p>
         </motion.div>
       </div>
@@ -202,7 +203,7 @@ export default function Footer() {
       {/* Scroll to Top Button */}
       <motion.button
         onClick={scrollToTop}
-        className="fixed bottom-6 right-6 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-white/90 text-neutral-600 shadow-lg backdrop-blur-xs transition-all duration-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white dark:border-neutral-800 dark:bg-neutral-900/90 dark:text-neutral-400 dark:hover:border-neutral-100 dark:hover:bg-neutral-100 dark:hover:text-neutral-900"
+        className="fixed right-6 bottom-6 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-white/90 text-neutral-600 shadow-lg backdrop-blur-xs transition-all duration-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white dark:border-neutral-800 dark:bg-neutral-900/90 dark:text-neutral-400 dark:hover:border-neutral-100 dark:hover:bg-neutral-100 dark:hover:text-neutral-900"
         initial={{ opacity: 0, y: 20 }}
         animate={{
           opacity: showScrollTop ? 1 : 0,

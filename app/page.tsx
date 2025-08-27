@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import CTA from "@/components/CTA";
 import Hero from "@/components/Hero";
 import FeaturedProjects from "@/components/FeaturedProjects";
+import FeaturedBlogs from "@/components/FeaturedBlogs";
 import Skills from "@/components/Skills";
 import Testimonials from "@/components/Testimonials";
 
@@ -38,6 +39,7 @@ export default function Home() {
       <Hero />
       <FeaturedProjects />
       <Skills />
+      <FeaturedBlogs />
       <Testimonials />
       <CTA />
     </main>

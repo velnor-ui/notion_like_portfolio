@@ -17,7 +17,7 @@ export const featuredProjects: Project[] = [
     title: "E-Commerce Platform",
     description:
       "A modern e-commerce platform with advanced filtering, real-time inventory, and seamless checkout experience built with cutting-edge technologies.",
-    image: "/friday.jpg",
+    image: "/project_ecom.webp",
     tags: ["React", "Node.js", "MongoDB", "Stripe"],
     status: "Live",
     year: "2024",
@@ -30,7 +30,7 @@ export const featuredProjects: Project[] = [
     title: "Task Management App",
     description:
       "Collaborative task management tool with real-time updates, team analytics, and customizable workflows for enhanced productivity.",
-    image: "/friday.jpg",
+    image: "/project_task.avif",
     tags: ["Next.js", "TypeScript", "Supabase", "Tailwind"],
     status: "In Development",
     year: "2024",
@@ -40,15 +40,15 @@ export const featuredProjects: Project[] = [
   },
   {
     id: 3,
-    title: "AI Content Generator",
+    title: "Blog Platform",
     description:
-      "Smart content generation tool powered by AI, helping creators produce engaging content at scale with advanced machine learning.",
-    image: "/friday.jpg",
-    tags: ["Python", "FastAPI", "OpenAI", "React"],
+      "A modern blog platform with markdown support and content management.",
+    image: "/project_blog.png",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Stripe"],
     status: "Live",
     year: "2023",
-    githubUrl: "https://github.com/username/ai-content",
-    liveUrl: "https://ai-content-demo.com",
+    githubUrl: "https://github.com/username/blog-platform",
+    liveUrl: "https://blog-platform-demo.com",
     featured: true,
   },
 ];

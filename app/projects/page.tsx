@@ -28,7 +28,7 @@ const CustomSelect = ({
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full rounded-lg border px-4 py-2 text-left transition-all duration-200 hover:border-neutral-300 focus:outline-hidden focus:ring-2 focus:ring-black focus:ring-opacity-10 md:w-48"
+        className="focus:ring-opacity-10 w-full rounded-lg border px-4 py-2 text-left transition-all duration-200 hover:border-neutral-300 focus:ring-2 focus:ring-black focus:outline-hidden md:w-48"
       >
         <div className="flex items-center justify-between">
           <span className={value === "All" ? "text-neutral-500" : "text-black"}>
@@ -39,7 +39,7 @@ const CustomSelect = ({
       </button>
 
       {isOpen && (
-        <div className="absolute left-0 right-0 top-full z-10 mt-2 rounded-lg border bg-primary-foreground shadow-lg">
+        <div className="bg-primary-foreground absolute top-full right-0 left-0 z-10 mt-2 rounded-lg border shadow-lg">
           {options.map((option) => (
             <button
               key={option}
@@ -47,7 +47,7 @@ const CustomSelect = ({
                 onValueChange(option);
                 setIsOpen(false);
               }}
-              className="w-full px-4 py-2 text-left transition-colors duration-150 first:rounded-t-lg last:rounded-b-lg hover:bg-primary/10"
+              className="hover:bg-primary/10 w-full px-4 py-2 text-left transition-colors duration-150 first:rounded-t-lg last:rounded-b-lg"
             >
               {option}
             </button>
@@ -87,13 +87,13 @@ export default function ProjectsPage() {
       {/* Filters */}
       <div className="mb-12 flex flex-col gap-4 md:flex-row">
         <div className="relative flex-1">
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 transform text-neutral-400">
+          <div className="absolute top-1/2 left-4 -translate-y-1/2 transform text-neutral-400">
             <IconSearch />
           </div>
           <input
             type="text"
             placeholder="Search projects, technologies, or descriptions..."
-            className="w-full rounded-xl border py-3 pl-12 pr-4 placeholder-neutral-400 transition-all duration-200 focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-opacity-10"
+            className="focus:ring-primary focus:ring-opacity-10 w-full rounded-xl border py-3 pr-4 pl-12 placeholder-neutral-400 transition-all duration-200 focus:border-transparent focus:ring-2 focus:outline-hidden"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />

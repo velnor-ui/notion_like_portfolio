@@ -141,7 +141,7 @@ export default function ProjectDetailPage() {
             <Button
               variant="ghost"
               asChild
-              className="group -ml-4 text-xs text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 md:text-sm"
+              className="group -ml-4 text-xs text-neutral-600 hover:text-neutral-900 md:text-sm dark:text-neutral-400 dark:hover:text-neutral-100"
             >
               <Link href="/projects">
                 <motion.div
@@ -172,7 +172,7 @@ export default function ProjectDetailPage() {
 
             {/* Meta Information */}
             <motion.div
-              className="flex flex-wrap items-center gap-2 text-[10px] text-neutral-500 dark:text-neutral-500 md:gap-6 md:text-xs lg:text-sm"
+              className="flex flex-wrap items-center gap-2 text-[10px] text-neutral-500 md:gap-6 md:text-xs lg:text-sm dark:text-neutral-500"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
@@ -246,7 +246,7 @@ export default function ProjectDetailPage() {
                   Overview
                 </h2>
                 <div className="prose prose-neutral dark:prose-invert max-w-none">
-                  <p className="whitespace-pre-line leading-relaxed text-neutral-600 dark:text-neutral-400">
+                  <p className="leading-relaxed whitespace-pre-line text-neutral-600 dark:text-neutral-400">
                     {project.longDescription}
                   </p>
                 </div>
@@ -271,8 +271,8 @@ export default function ProjectDetailPage() {
                       whileHover={{ scale: 1.02 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <div className="rounded-xl border border-red-200 bg-red-50/50 p-4 dark:border-red-900/30 dark:bg-red-950/20 md:p-6">
-                        <h3 className="mb-4 flex items-center text-lg font-semibold text-red-700 dark:text-red-400 md:text-xl">
+                      <div className="rounded-xl border border-red-200 bg-red-50/50 p-4 md:p-6 dark:border-red-900/30 dark:bg-red-950/20">
+                        <h3 className="mb-4 flex items-center text-lg font-semibold text-red-700 md:text-xl dark:text-red-400">
                           <XCircle className="mr-2 h-4 w-4 md:h-5 md:w-5" />
                           Challenges
                         </h3>
@@ -304,8 +304,8 @@ export default function ProjectDetailPage() {
                       whileHover={{ scale: 1.02 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <div className="rounded-xl border border-green-200 bg-green-50/50 p-4 dark:border-green-900/30 dark:bg-green-950/20 md:p-6">
-                        <h3 className="mb-4 flex items-center text-lg font-semibold text-green-700 dark:text-green-400 md:text-xl">
+                      <div className="rounded-xl border border-green-200 bg-green-50/50 p-4 md:p-6 dark:border-green-900/30 dark:bg-green-950/20">
+                        <h3 className="mb-4 flex items-center text-lg font-semibold text-green-700 md:text-xl dark:text-green-400">
                           <CheckCircle className="mr-2 h-4 w-4 md:h-5 md:w-5" />
                           Solutions
                         </h3>
@@ -344,12 +344,12 @@ export default function ProjectDetailPage() {
                 className="sticky top-8"
               >
                 <motion.div
-                  className="rounded-2xl border border-neutral-200 bg-white/80 p-4 backdrop-blur-xs dark:border-neutral-800 dark:bg-neutral-900/80 md:p-6"
+                  className="rounded-2xl border border-neutral-200 bg-white/80 p-4 backdrop-blur-xs md:p-6 dark:border-neutral-800 dark:bg-neutral-900/80"
                   whileHover={{ scale: 1.02, y: -4 }}
                   transition={{ duration: 0.3 }}
                 >
                   <div className="mb-6 flex items-center gap-2">
-                    <Sparkle className="h-4 w-4 text-neutral-600 dark:text-neutral-400 md:h-5 md:w-5" />
+                    <Sparkle className="h-4 w-4 text-neutral-600 md:h-5 md:w-5 dark:text-neutral-400" />
                     <h3 className="text-lg font-semibold md:text-xl">
                       Project Details
                     </h3>

@@ -21,7 +21,7 @@ const Hero = () => {
           <div className="inline-block">
             <Badge
               variant="outline"
-              className="rounded-2xl border bg-primary/10 p-4 text-sm backdrop-blur-md"
+              className="bg-primary/10 rounded-2xl border p-4 text-sm backdrop-blur-md"
             >
               Full Stack Developer
             </Badge>
@@ -29,16 +29,16 @@ const Hero = () => {
           {/* Change it to your name */}
           <h1 className="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
             Hi, I&apos;m{" "}
-            <span className="inline-block text-primary">Tony Stark</span>
+            <span className="text-primary inline-block">Tony Stark</span>
           </h1>
           {/* Change it to your bio / one-liner */}
-          <p className="text-xl text-muted-foreground">
+          <p className="text-muted-foreground text-xl">
             I am billionaire, playboy, philanthropist.
           </p>
           <div className="flex flex-wrap gap-4">
             <ArrowButton link="/contact">Get in Touch</ArrowButton>
             {/* Change it to your resume link */}
-            <ArrowButton link="#" variant="outline">
+            <ArrowButton link="#" variant="outline-solid">
               <Download className="mr-2 h-4 w-4" /> Download Resume
             </ArrowButton>
           </div>
@@ -46,7 +46,7 @@ const Hero = () => {
         {/* Change it to a social link if needed */}
         <Link
           href="/"
-          className="relative mx-auto aspect-square max-w-md overflow-hidden rounded-3xl border-8 border-muted"
+          className="border-muted relative mx-auto aspect-square max-w-md overflow-hidden rounded-3xl border-8"
         >
           <Image
             src="/tony.png"

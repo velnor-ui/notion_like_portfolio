@@ -231,7 +231,7 @@ const ContactForm = () => {
                 Name
               </label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2">
+                <span className="absolute top-1/2 left-3 -translate-y-1/2">
                   {getFieldIcon("name", <User />)}
                 </span>
                 <input
@@ -264,7 +264,7 @@ const ContactForm = () => {
                 Email
               </label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2">
+                <span className="absolute top-1/2 left-3 -translate-y-1/2">
                   {getFieldIcon("email", <Mail />)}
                 </span>
                 <input
@@ -298,7 +298,7 @@ const ContactForm = () => {
               Subject
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2">
+              <span className="absolute top-1/2 left-3 -translate-y-1/2">
                 {getFieldIcon("subject", <MessageSquare />)}
               </span>
               <input
@@ -357,9 +357,9 @@ const ContactForm = () => {
           <button
             onClick={handleSubmit}
             disabled={isSubmitting || !isFormValid()}
-            className={`flex w-full items-center justify-center rounded-lg px-6 py-3 font-medium text-primary-foreground transition-all duration-200 focus:outline-hidden focus:ring-2 focus:ring-offset-2 ${
+            className={`text-primary-foreground flex w-full items-center justify-center rounded-lg px-6 py-3 font-medium transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-hidden ${
               isSubmitting || !isFormValid()
-                ? "cursor-not-allowed bg-primary/50"
+                ? "bg-primary/50 cursor-not-allowed"
                 : "focus:ring-primary-500 dark:bg-primary-500 dark:hover:bg-primary-600 bg-primary hover:bg-primary/90"
             }`}
           >

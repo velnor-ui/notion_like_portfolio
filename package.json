@@ -26,6 +26,7 @@
     "lucide-react": "^0.542.0",
     "motion": "^12.23.12",
     "next": "15.1.0",
+    "next-mdx-remote": "^5.0.0",
     "next-themes": "latest",
     "nodemailer": "^7.0.5",
     "react": "^19.1.1",

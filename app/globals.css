@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @source '../*.{js,ts,jsx,tsx,mdx}';
 
@@ -272,4 +272,53 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.prose pre {
+  @apply bg-primary/5 text-muted-foreground my-2 overflow-x-auto rounded-2xl p-4 backdrop-blur-md;
+}
+
+.prose {
+  @apply max-w-none;
+}
+
+.prose h1 {
+  @apply text-foreground mb-6 text-2xl;
+}
+
+.prose h2 {
+  @apply text-foreground mt-8 mb-4 text-xl;
+}
+
+.prose h3 {
+  @apply text-foreground mt-6 mb-3 text-xl;
+}
+
+.prose p {
+  @apply text-foreground mb-4 text-xs leading-relaxed md:text-sm;
+}
+
+.prose a {
+  @apply text-foreground hover:text-primary no-underline transition-colors;
+}
+
+.prose ul {
+  @apply mb-4 pl-6;
+}
+
+.prose li {
+  @apply text-foreground mb-2 text-xs md:text-sm;
+}
+
+.prose blockquote {
+  @apply border-border text-muted-foreground my-6 border-l-2 pl-4 italic;
+}
+
+/* Dark mode prose adjustments */
+.dark .prose {
+  @apply text-foreground;
+}
+
+.dark .prose a {
+  @apply text-foreground hover:text-primary;
 }

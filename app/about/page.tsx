@@ -148,7 +148,7 @@ export default function AboutPage() {
                     <div className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">
                       {stat.number}
                     </div>
-                    <div className="text-xs text-neutral-600 dark:text-neutral-400 md:text-sm">
+                    <div className="text-xs text-neutral-600 md:text-sm dark:text-neutral-400">
                       {stat.label}
                     </div>
                   </motion.div>
@@ -199,7 +199,7 @@ export default function AboutPage() {
 
                 {/* Floating elements */}
                 <motion.div
-                  className="absolute -right-4 -top-4 rounded-full bg-white p-3 shadow-xl dark:bg-neutral-800"
+                  className="absolute -top-4 -right-4 rounded-full bg-white p-3 shadow-xl dark:bg-neutral-800"
                   animate={{ y: [0, -10, 0] }}
                   transition={{
                     duration: 3,
@@ -355,11 +355,11 @@ export default function AboutPage() {
                             <IconAward className="h-8 w-8 text-neutral-700 dark:text-neutral-300" />
                           </motion.div>
 
-                          <h3 className="mb-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-neutral-700 dark:text-neutral-100 dark:group-hover:text-neutral-300 md:text-xl">
+                          <h3 className="mb-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-neutral-700 md:text-xl dark:text-neutral-100 dark:group-hover:text-neutral-300">
                             {cert.name}
                           </h3>
 
-                          <p className="mb-1 text-sm text-neutral-600 dark:text-neutral-400 md:text-base">
+                          <p className="mb-1 text-sm text-neutral-600 md:text-base dark:text-neutral-400">
                             {cert.issuer}
                           </p>
 
@@ -374,7 +374,7 @@ export default function AboutPage() {
                             <Link
                               href={cert.link}
                               target="_blank"
-                              className="mt-2 flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400 md:text-base"
+                              className="mt-2 flex items-center gap-2 text-sm text-neutral-600 md:text-base dark:text-neutral-400"
                             >
                               View Certificate{" "}
                               <IconExternalLink className="h-4 w-4" />
@@ -414,7 +414,7 @@ export default function AboutPage() {
                           <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
 
                           {/* Floating emoji */}
-                          <div className="absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-2xl backdrop-blur-xs dark:bg-neutral-900/90">
+                          <div className="absolute top-4 right-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-2xl backdrop-blur-xs dark:bg-neutral-900/90">
                             {hobby.icon}
                           </div>
 
@@ -425,7 +425,7 @@ export default function AboutPage() {
                         </div>
 
                         <CardContent className="p-6 text-xs md:text-sm lg:text-base">
-                          <h3 className="mb-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-neutral-700 dark:text-neutral-100 dark:group-hover:text-neutral-300 md:text-xl">
+                          <h3 className="mb-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-neutral-700 md:text-xl dark:text-neutral-100 dark:group-hover:text-neutral-300">
                             {hobby.name}
                           </h3>
                           <p className="leading-relaxed text-neutral-600 dark:text-neutral-400">

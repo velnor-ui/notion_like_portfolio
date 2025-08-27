@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "./ThemeToggle";
 import Logo from "./Logo";
@@ -13,6 +13,7 @@ const navItems = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
   { name: "Projects", path: "/projects" },
+  { name: "Blog", path: "/blog" },
   { name: "Contact", path: "/contact" },
 ];
 
@@ -39,8 +40,8 @@ export default function Header() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 px-4 transition-all duration-300 ease-in-out md:px-6",
         scrolled
-          ? "top-0 mx-auto max-w-4xl border bg-background/80 shadow-xs backdrop-blur-lg md:top-2 md:rounded-2xl"
-          : "mx-auto max-w-6xl bg-background shadow-xs md:rounded-2xl",
+          ? "bg-background/80 top-0 mx-auto max-w-4xl border shadow-xs backdrop-blur-lg md:top-2 md:rounded-2xl"
+          : "bg-background mx-auto max-w-6xl shadow-xs md:rounded-2xl",
       )}
     >
       <div
@@ -62,7 +63,7 @@ export default function Header() {
               <Link
                 href={item.path}
                 className={cn(
-                  "relative rounded-lg px-3 py-1 text-sm font-medium transition-colors duration-200 hover:text-primary",
+                  "hover:text-primary relative rounded-lg px-3 py-1 text-sm font-medium transition-colors duration-200",
                   pathname === item.path
                     ? "text-primary"
                     : "text-muted-foreground",
@@ -72,7 +73,7 @@ export default function Header() {
                 {hoveredItem === index && (
                   <motion.div
                     layoutId="nav-highlight"
-                    className="absolute inset-0 rounded-lg bg-primary/10"
+                    className="bg-primary/10 absolute inset-0 rounded-lg"
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   />
                 )}
@@ -88,7 +89,7 @@ export default function Header() {
           <button
             aria-label="Toggle mobile menu"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="ml-2 p-2 text-muted-foreground transition-colors hover:text-foreground"
+            className="text-muted-foreground hover:text-foreground ml-2 p-2 transition-colors"
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -111,7 +112,7 @@ export default function Header() {
                   href={item.path}
                   onClick={() => setMobileMenuOpen(false)}
                   className={cn(
-                    "block px-4 text-sm font-medium transition-colors hover:text-primary",
+                    "hover:text-primary block px-4 text-sm font-medium transition-colors",
                     pathname === item.path
                       ? "text-primary"
                       : "text-muted-foreground",

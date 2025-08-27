@@ -20,15 +20,15 @@ const SectionCard = ({
   isExperience?: boolean;
 }) => {
   return (
-    <Card className="group border-neutral-200 bg-white/80 text-xs backdrop-blur-xs hover:border-neutral-300 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900/80 dark:hover:border-neutral-700 md:text-sm">
+    <Card className="group border-neutral-200 bg-white/80 text-xs backdrop-blur-xs hover:border-neutral-300 hover:shadow-lg md:text-sm dark:border-neutral-800 dark:bg-neutral-900/80 dark:hover:border-neutral-700">
       <CardContent className="p-4 sm:p-8">
         <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
           <div className="flex-1 space-y-4">
             <div className="space-y-2">
-              <h3 className="text-lg font-bold text-neutral-900 transition-colors group-hover:text-neutral-700 dark:text-neutral-100 dark:group-hover:text-neutral-300 sm:text-2xl md:text-xl">
+              <h3 className="text-lg font-bold text-neutral-900 transition-colors group-hover:text-neutral-700 sm:text-2xl md:text-xl dark:text-neutral-100 dark:group-hover:text-neutral-300">
                 {title}
               </h3>
-              <div className="flex items-center gap-4 text-xs text-neutral-600 dark:text-neutral-400 sm:text-sm">
+              <div className="flex items-center gap-4 text-xs text-neutral-600 sm:text-sm dark:text-neutral-400">
                 <span className="font-medium">{subtitle}</span>
                 <span className="flex items-center gap-1">
                   {isExperience && <IconMapPin className="h-4 w-4" />}
@@ -37,7 +37,7 @@ const SectionCard = ({
               </div>
             </div>
 
-            <p className="leading-relaxed text-neutral-600 dark:text-neutral-400 sm:text-base">
+            <p className="leading-relaxed text-neutral-600 sm:text-base dark:text-neutral-400">
               {description}
             </p>
 
@@ -61,7 +61,7 @@ const SectionCard = ({
 
           <div className="flex items-center gap-2 text-neutral-500 dark:text-neutral-500">
             <IconCalendar className="h-3 w-3 md:h-4 md:w-4" />
-            <span className="whitespace-nowrap font-medium">{period}</span>
+            <span className="font-medium whitespace-nowrap">{period}</span>
           </div>
         </div>
       </CardContent>

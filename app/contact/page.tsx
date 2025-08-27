@@ -39,7 +39,7 @@ export default function NotionContactForm() {
       {/* Skip to content link for accessibility */}
       <a
         href="#main-content"
-        className="sr-only focus:absolute focus:left-4 focus:top-4 focus:rounded-md focus:bg-primary/90 focus:px-3 focus:py-2 focus:text-white"
+        className="focus:bg-primary/90 sr-only focus:absolute focus:top-4 focus:left-4 focus:rounded-md focus:px-3 focus:py-2 focus:text-white"
       >
         Skip to main content
       </a>
@@ -59,7 +59,7 @@ export default function NotionContactForm() {
           </div>
 
           <aside
-            className="col-span-1 space-y-10 divide-y divide-neutral-200 dark:divide-neutral-800 md:space-y-8 md:divide-y-0"
+            className="col-span-1 space-y-10 divide-y divide-neutral-200 md:space-y-8 md:divide-y-0 dark:divide-neutral-800"
             aria-label="Contact Methods Sidebar"
           >
             <ContactMethods />
@@ -73,7 +73,7 @@ export default function NotionContactForm() {
               <h2 className="mb-2 text-base font-semibold">Quick Response</h2>
               <p
                 id="response-time-description"
-                className="rounded-lg bg-primary/10 p-4 text-sm leading-relaxed"
+                className="bg-primary/10 rounded-lg p-4 text-sm leading-relaxed"
               >
                 I typically respond within 24 hours on weekdays.
               </p>

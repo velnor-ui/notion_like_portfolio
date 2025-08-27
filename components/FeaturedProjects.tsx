@@ -96,9 +96,9 @@ const FeaturedProjects = () => {
                 />
 
                 {/* Status & Featured Indicators */}
-                <div className="absolute left-4 top-4 flex items-center space-x-2">
+                <div className="absolute top-4 left-4 flex items-center space-x-2">
                   <div
-                    className={`flex items-center rounded-lg border bg-primary-foreground/80 px-3 py-1 backdrop-blur-xs transition-all duration-300 ${
+                    className={`bg-primary-foreground/80 flex items-center rounded-lg border px-3 py-1 backdrop-blur-xs transition-all duration-300 ${
                       hoveredProject === project.id
                         ? "border-neutral-900 bg-white dark:bg-neutral-800"
                         : "border-neutral-200 dark:border-neutral-800"
@@ -120,7 +120,7 @@ const FeaturedProjects = () => {
                 </div>
 
                 {project.featured && (
-                  <div className="absolute right-4 top-4">
+                  <div className="absolute top-4 right-4">
                     <div
                       className={`flex items-center rounded-lg bg-neutral-900 px-3 py-1 text-xs font-medium text-white transition-all duration-200 ease-in-out ${
                         hoveredProject === project.id ? "scale-110" : ""
@@ -179,7 +179,7 @@ const FeaturedProjects = () => {
                     <motion.h3 className="text-xl font-bold transition-all duration-300">
                       {project.title}
                     </motion.h3>
-                    <div className="ml-4 flex items-center rounded-md bg-primary/10 px-2 py-1 text-sm text-neutral-500 backdrop-blur-xs">
+                    <div className="bg-primary/10 ml-4 flex items-center rounded-md px-2 py-1 text-sm text-neutral-500 backdrop-blur-xs">
                       <IconCalendar className="mr-1 h-3 w-3" />
                       {project.year}
                     </div>
@@ -217,10 +217,10 @@ const FeaturedProjects = () => {
         }}
       >
         <div className="mx-auto max-w-2xl">
-          <h3 className="mb-4 font-bold text-neutral-900 dark:text-neutral-100 md:text-2xl">
+          <h3 className="mb-4 font-bold text-neutral-900 md:text-2xl dark:text-neutral-100">
             Ready to start your project?
           </h3>
-          <p className="mb-8 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400 md:text-base">
+          <p className="mb-8 text-sm leading-relaxed text-neutral-600 md:text-base dark:text-neutral-400">
             I&apos;m always excited to collaborate on innovative projects and
             bring creative ideas to life. Let&apos;s discuss how we can work
             together to create something exceptional.

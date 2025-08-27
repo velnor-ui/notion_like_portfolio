@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Container from "./Container";
 import SectionHeader from "./SectionHeader";
 import { skillCategories } from "@/lib/constants";
@@ -47,7 +47,7 @@ export default function Skills() {
             >
               {category.skills.map((skill) => (
                 <motion.div
-                  className="rounded-md border bg-primary/10 px-2 py-1 text-xs font-semibold tracking-tight backdrop-blur-xl"
+                  className="bg-primary/10 rounded-md border px-2 py-1 text-xs font-semibold tracking-tight backdrop-blur-xl"
                   key={skill}
                   variants={item}
                 >

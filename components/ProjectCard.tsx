@@ -31,9 +31,9 @@ const ProjectCard = ({
           href={`/projects/${project.id}`}
           className="relative h-48 overflow-hidden bg-linear-to-br from-neutral-50 to-neutral-100 dark:from-neutral-800 dark:to-neutral-900"
         >
-          <motion.div className="absolute inset-0 z-20 bg-primary/10 opacity-0 blur-md transition-all duration-300 ease-in-out group-hover:opacity-100" />
+          <motion.div className="bg-primary/10 absolute inset-0 z-20 opacity-0 blur-md transition-all duration-300 ease-in-out group-hover:opacity-100" />
           {project.status && (
-            <div className="absolute right-4 top-4 z-30">
+            <div className="absolute top-4 right-4 z-30">
               <StatusBadge status={project.status} />
             </div>
           )}
@@ -51,7 +51,7 @@ const ProjectCard = ({
             href={`/projects/${project.id}`}
             className="flex flex-1 flex-col px-4 pt-4"
           >
-            <h3 className="mb-3 text-lg font-bold transition-colors duration-200 group-hover:text-neutral-700 dark:group-hover:text-neutral-300 sm:text-xl">
+            <h3 className="mb-3 text-lg font-bold transition-colors duration-200 group-hover:text-neutral-700 sm:text-xl dark:group-hover:text-neutral-300">
               {project.title}
             </h3>
             <p className="mb-6 flex-1 leading-relaxed text-neutral-600 dark:text-neutral-400">
@@ -77,13 +77,13 @@ const ProjectCard = ({
             <div className="flex gap-2">
               <Link
                 href={project.githubUrl ?? "#"}
-                className="flex items-center justify-center rounded-lg p-2 text-neutral-400 transition-all duration-200 hover:scale-110 hover:bg-primary/20 hover:text-primary"
+                className="hover:bg-primary/20 hover:text-primary flex items-center justify-center rounded-lg p-2 text-neutral-400 transition-all duration-200 hover:scale-110"
               >
                 <IconBrandGithub className="h-4 w-4" />
               </Link>
               <Link
                 href={project.liveUrl ?? "#"}
-                className="flex items-center justify-center rounded-lg p-2 text-neutral-400 transition-all duration-200 hover:scale-110 hover:bg-primary/20 hover:text-primary"
+                className="hover:bg-primary/20 hover:text-primary flex items-center justify-center rounded-lg p-2 text-neutral-400 transition-all duration-200 hover:scale-110"
               >
                 <IconExternalLink className="h-4 w-4" />
               </Link>

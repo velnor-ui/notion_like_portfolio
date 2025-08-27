@@ -43,6 +43,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+};
+
+export const viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
     { media: "(prefers-color-scheme: dark)", color: "#18181b" },
@@ -58,16 +61,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning data-color-scheme="dark light">
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta
-          name="theme-color"
-          content="#ffffff"
-          media="(prefers-color-scheme: light)"
-        />
-        <meta
-          name="theme-color"
-          content="#18181b"
-          media="(prefers-color-scheme: dark)"
-        />
         <meta name="color-scheme" content="light dark" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta
@@ -107,7 +100,7 @@ export default function RootLayout({
             <header
               role="banner"
               aria-label="Site Header"
-              className="w-screen bg-background"
+              className="bg-background w-screen"
             >
               <Header />
             </header>
